@@ -53,7 +53,7 @@ class ScannedResourcePDF
         end
         prawn_document.move_down 20
 
-        header(prawn_document, "Princeton University Library Disclaimer")
+        header(prawn_document, "Indiana University Disclaimer")
         prawn_document.text I18n.t('rights.pdf_boilerplate'), inline_format: true
         prawn_document.move_down 20
 

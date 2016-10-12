@@ -51,14 +51,16 @@ gem 'hydra-derivatives'#, github: 'projecthydra/hydra-derivatives', branch: 'mas
 gem 'active-fedora', '11.0.0.rc7'
 gem 'active-triples', '~> 0.10.0'
 
-gem 'rubocop', '~> 0.34.0', require: false
-gem 'rubocop-rspec', '~> 1.3.0', require: false
+
 
 group :development, :test do
+  gem 'rubocop', '~> 0.34.0', require: false
+  gem 'rubocop-rspec', '~> 1.3.0', require: false
   gem 'simplecov', require: false
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'pry-byebug'
   gem 'rspec-rails'
+  gem 'rspec_junit_formatter'
   gem "factory_girl_rails"
   gem 'jasmine-rails'
   gem 'jasmine-jquery-rails'

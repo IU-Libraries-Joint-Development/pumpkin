@@ -24,7 +24,7 @@ class PurlController < ApplicationController
   private
 
     OBJECT_LOOKUPS = {
-      FileSet => { match_pattern: /^\w{3}\d{4}-\d{1}-\d{4}/, search_attribute: :label_tesim },
+      FileSet => { match_pattern: /^\w{3}\d{4}-\d{1}-\d{4}$/, search_attribute: :label_tesim },
       ScannedResource => { match_pattern: /^\w{3}\d{4}$/, search_attribute: :source_metadata_identifier_tesim },
       MultiVolumeWork => { match_pattern: /^\w{3}\d{4}$/, search_attribute: :source_metadata_identifier_tesim }
     }

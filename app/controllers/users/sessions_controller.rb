@@ -2,8 +2,8 @@
 #
 # Copyright:: Copyright 2016 Indiana University
 
-class SessionsController < Devise::SessionsController
-  # Quiet RuboCop
+class Users::SessionsController < Devise::SessionsController
+  # Quiet, RuboCop!
 
   # GET /resource/global_sign_out
   # Destroy the local session and then request CAS to invalidate the TGT.

@@ -2,15 +2,13 @@
 #
 # Copyright:: Copyright 2016 Indiana University
 
-require 'devise/sessions_controller.rb'
-
-Devise::SessionsController.class_eval do
-  # Quiet, RuboCop!
+class SessionsController < Devise::SessionsController
+  # Quiet RuboCop
 
   # GET /resource/global_sign_out
   # Destroy the local session and then request CAS to invalidate the TGT.
   def global_logout
-    # Adapted from #destroy
+    # Copied from devise/sessions_controller.rb
     if Devise.sign_out_all_scopes
     then sign_out
     else sign_out(resource_name)

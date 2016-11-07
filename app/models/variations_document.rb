@@ -45,6 +45,8 @@ class VariationsDocument
       @variations.xpath('//FileInfos/FileInfo').each do |file|
         file_hash = {}
         file_hash[:id] = file.xpath('FileName').first&.content.to_s
+        file_hash[:source_metadata_identifier] = file_hash[:id].gsub(/\.\w{3,4}$/, '').upcase
+        file_hash[:identifier] = 'http://purl.dlib.indiana.edu/iudl/variations/score/' + file_hash[:source_metadata_identifier]
         file_hash[:mime_type] = 'image/tiff'
         file_hash[:path] = '/tmp/ingest/' + file_hash[:id]
         file_hash[:title] = ['TITLE MISSING'] # replaced later

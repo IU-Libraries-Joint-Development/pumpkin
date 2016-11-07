@@ -143,60 +143,80 @@
         :proxy: bhr9405-1-10.tif
 :files:
 - :id: bhr9405-1-1.tif
+  :source_metadata_identifier: BHR9405-1-1
+  :identifier: http://purl.dlib.indiana.edu/iudl/variations/score/BHR9405-1-1
   :mime_type: image/tiff
   :path: "/tmp/ingest/bhr9405-1-1.tif"
   :title:
   - "[i]"
   :file_opts: {}
 - :id: bhr9405-1-2.tif
+  :source_metadata_identifier: BHR9405-1-2
+  :identifier: http://purl.dlib.indiana.edu/iudl/variations/score/BHR9405-1-2
   :mime_type: image/tiff
   :path: "/tmp/ingest/bhr9405-1-2.tif"
   :title:
   - "[ii]"
   :file_opts: {}
 - :id: bhr9405-1-3.tif
+  :source_metadata_identifier: BHR9405-1-3
+  :identifier: http://purl.dlib.indiana.edu/iudl/variations/score/BHR9405-1-3
   :mime_type: image/tiff
   :path: "/tmp/ingest/bhr9405-1-3.tif"
   :title:
   - "[iii]"
   :file_opts: {}
 - :id: bhr9405-1-4.tif
+  :source_metadata_identifier: BHR9405-1-4
+  :identifier: http://purl.dlib.indiana.edu/iudl/variations/score/BHR9405-1-4
   :mime_type: image/tiff
   :path: "/tmp/ingest/bhr9405-1-4.tif"
   :title:
   - "[iv]"
   :file_opts: {}
 - :id: bhr9405-1-5.tif
+  :source_metadata_identifier: BHR9405-1-5
+  :identifier: http://purl.dlib.indiana.edu/iudl/variations/score/BHR9405-1-5
   :mime_type: image/tiff
   :path: "/tmp/ingest/bhr9405-1-5.tif"
   :title:
   - "[v]"
   :file_opts: {}
 - :id: bhr9405-1-6.tif
+  :source_metadata_identifier: BHR9405-1-6
+  :identifier: http://purl.dlib.indiana.edu/iudl/variations/score/BHR9405-1-6
   :mime_type: image/tiff
   :path: "/tmp/ingest/bhr9405-1-6.tif"
   :title:
   - "[vi]"
   :file_opts: {}
 - :id: bhr9405-1-7.tif
+  :source_metadata_identifier: BHR9405-1-7
+  :identifier: http://purl.dlib.indiana.edu/iudl/variations/score/BHR9405-1-7
   :mime_type: image/tiff
   :path: "/tmp/ingest/bhr9405-1-7.tif"
   :title:
   - '1'
   :file_opts: {}
 - :id: bhr9405-1-8.tif
+  :source_metadata_identifier: BHR9405-1-8
+  :identifier: http://purl.dlib.indiana.edu/iudl/variations/score/BHR9405-1-8
   :mime_type: image/tiff
   :path: "/tmp/ingest/bhr9405-1-8.tif"
   :title:
   - '2'
   :file_opts: {}
 - :id: bhr9405-1-9.tif
+  :source_metadata_identifier: BHR9405-1-9
+  :identifier: http://purl.dlib.indiana.edu/iudl/variations/score/BHR9405-1-9
   :mime_type: image/tiff
   :path: "/tmp/ingest/bhr9405-1-9.tif"
   :title:
   - '3'
   :file_opts: {}
 - :id: bhr9405-1-10.tif
+  :source_metadata_identifier: BHR9405-1-10
+  :identifier: http://purl.dlib.indiana.edu/iudl/variations/score/BHR9405-1-10
   :mime_type: image/tiff
   :path: "/tmp/ingest/bhr9405-1-10.tif"
   :title:

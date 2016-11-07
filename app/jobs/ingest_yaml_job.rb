@@ -81,6 +81,8 @@ class IngestYAMLJob < ActiveJob::Base
         logger.info "Ingesting file #{f[:path]}"
         file_set = FileSet.new
         file_set.title = f[:title]
+        file_set.source_metadata_identifier = f[:source_metadata_identifier]
+        file_set.identifier = f[:identifier]
         file_set.replaces = f[:replaces]
         actor = FileSetActor.new(file_set, @user)
         actor.create_metadata(resource, f[:file_opts])

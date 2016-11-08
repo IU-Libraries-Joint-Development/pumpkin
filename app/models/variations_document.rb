@@ -92,7 +92,7 @@ class VariationsDocument
       array
     end
 
-    def file_attributes(file_node, file_hash)
+    def file_attributes(_file_node, file_hash)
       att_hash = {}
       att_hash[:title] = ['TITLE MISSING'] # replaced later
       att_hash[:source_metadata_identifier] = file_hash[:id].gsub(/\.\w{3,4}$/, '').upcase

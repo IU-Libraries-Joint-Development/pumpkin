@@ -15,7 +15,8 @@ RSpec.describe IngestYAMLJob do
     let(:resource2) { ScannedResource.new id: 'resource2' }
     let(:file_path) { '/tmp/pudl0001/4612596/00000001.tif' }
     let(:mime_type) { 'image/tiff' }
-    let(:file) { described_class.new.send(:decorated_file, { path: tiff_file, mime_type: mime_type }) }
+    let(:file_hash) { { path: tiff_file, mime_type: mime_type } }
+    let(:file) { described_class.new.send(:decorated_file, file_hash) }
     let(:logical_order) { double('logical_order') }
     let(:order_object) { double('order_object') }
 

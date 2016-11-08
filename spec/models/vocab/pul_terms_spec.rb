@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe PULTerms do
   describe "terms" do
     { exhibit_id: 'Exhibit ID',
-      metadata_id: 'Metadata ID',     
+      metadata_id: 'Metadata ID',
       source_metadata: 'Source Metadata',
       ocr_language: 'OCR Language',
       pdf_type: 'PDF Type',
@@ -11,7 +11,7 @@ RSpec.describe PULTerms do
     }.each do |term, label|
       describe "#{term}" do
         it "has the right label" do
-          expect(PULTerms.send(term).label).to eq label
+          expect(described_class.send(term).label).to eq label
         end
       end
     end

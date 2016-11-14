@@ -1,21 +1,22 @@
+# rubocop:disable Metrics/ClassLength
 class IngestYAMLJob < ActiveJob::Base
   queue_as :ingest
 
   # @param [String] yaml_file Filename of a YAML file to ingest
   # @param [String] user User to ingest as
-  # @param [Array<String>] collections Collection IDs the resources should be members of
-  def perform(yaml_file, user, collections = [])
+  def perform(yaml_file, user)
     logger.info "Ingesting YAML #{yaml_file}"
     @yaml_file = yaml_file
     @yaml = File.open(yaml_file) { |f| Psych.load(f) }
     @user = user
-    @collections = collections.map { |col_id| Collection.find(col_id) }
 
     ingest
   end
 
   private
 
+    # rubocop:disable Metrics/CyclomaticComplexity
+    # rubocop:disable Metrics/PerceivedComplexity
     def ingest
       resource = (@yaml[:volumes].present? ? MultiVolumeWork : ScannedResource).new
       if @yaml[:attributes].present?
@@ -24,7 +25,7 @@ class IngestYAMLJob < ActiveJob::Base
       resource.source_metadata = @yaml[:source_metadata] if @yaml[:source_metadata].present?
 
       resource.apply_depositor_metadata @user
-      resource.member_of_collections = @collections
+      resource.member_of_collections = @yaml[:collection_slugs].map { |slug| find_or_create_collection(slug) } if @yaml[:collection_slugs].present?
 
       resource.save!
       logger.info "Created #{resource.class}: #{resource.id}"
@@ -34,13 +35,13 @@ class IngestYAMLJob < ActiveJob::Base
       if @yaml[:volumes].present?
         ingest_volumes(resource)
       else
-        ingest_files(resource: resource, files: @yaml[:files])
-        if @yaml[:structure].present?
-          resource.logical_order.order = map_fileids(@yaml[:structure])
-        end
+        ingest_files(resource: resource, files: @yaml[:files]) if @yaml[:files].present?
+        resource.logical_order.order = map_fileids(@yaml[:structure]) if @yaml[:structure].present?
         resource.save!
       end
     end
+    # rubocop:enable Metrics/CyclomaticComplexity
+    # rubocop:enable Metrics/PerceivedComplexity
 
     def attach_sources(resource)
       return unless @yaml[:sources].present?
@@ -67,8 +68,8 @@ class IngestYAMLJob < ActiveJob::Base
         r.save!
         logger.info "Created ScannedResource: #{r.id}"
 
-        ingest_files(parent: parent, resource: r, files: volume[:files])
-        r.logical_order.order = map_fileids(volume[:structure])
+        ingest_files(parent: parent, resource: r, files: volume[:files]) if volume[:files].present?
+        r.logical_order.order = map_fileids(volume[:structure]) if volume[:structure].present?
         r.save!
 
         parent.ordered_members << r
@@ -112,4 +113,24 @@ class IngestYAMLJob < ActiveJob::Base
     def thumbnail_path
       @thumbnail_path ||= @yaml[:thumbnail_path]
     end
+
+    def find_or_create_collection(slug)
+      existing = Collection.where exhibit_id_ssim: slug
+      return existing.first if existing.first
+      col = Collection.new metadata_for_collection(slug)
+      col.apply_depositor_metadata @user
+      col.save!
+      col
+    end
+
+    def metadata_for_collection(slug)
+      collection_metadata.each do |c|
+        return { exhibit_id: slug, title: [c['title']], description: [c['blurb']] } if c['slug'] == slug
+      end
+    end
+
+    def collection_metadata
+      @collection_metadata ||= JSON.parse(File.read(File.join(Rails.root, 'config', 'pudl_collections.json')))
+    end
 end
+# rubocop:enable Metrics/ClassLength

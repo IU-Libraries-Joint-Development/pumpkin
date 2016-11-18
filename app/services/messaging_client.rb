@@ -4,6 +4,10 @@ class MessagingClient
     @amqp_url = amqp_url
   end
 
+  def enabled?
+    !amqp_url.blank?
+  end
+
   def publish(message)
     exchange.publish(message, persistent: true)
   rescue

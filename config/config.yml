@@ -50,6 +50,7 @@ defaults: &defaults
     see_also_hash:
       id: 'http://dlib.indiana.edu:9000/iucatextract?maximumRecords=1&operation=searchRetrieve&query=cql.serverChoice=%s&recordSchema=marcxml&version=1.1'
       format: 'application/xml'
+  upload_to: <%= ENV['PLUM_UPLOAD'] || 'null' %>
 
 development:
   <<: *defaults
@@ -67,9 +68,11 @@ production:
   events:
     server: <%= ENV['PLUM_RABBIT_SERVER'] || 'amqp://localhost:5672' %>
     exchange: "plum_events"
+  upload_to: <%= ENV['PLUM_UPLOAD'] || '/tmp/pumpkin' %>
 
 staging:
   <<: *defaults
   events:
     server: <%= ENV['PLUM_RABBIT_SERVER'] || 'amqp://localhost:5672' %>
     exchange: "plum_events"
+  upload_to: <%= ENV['PLUM_UPLOAD'] || '/tmp/pumpkin' %>

@@ -29,7 +29,8 @@ class BrowseEverythingIngester
     end
 
     def downloaded_file_path
-      @downloaded_file_path ||= retriever.download(file_info)
+      target = Plum::config[:upload_to]
+      @downloaded_file_path ||= retriever.download(file_info, target)
     end
 
     def cleanup_download

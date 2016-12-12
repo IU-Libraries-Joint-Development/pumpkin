@@ -77,3 +77,12 @@ And run the test suite in another window:
 1. Export config variable for IIIF url: `export
    PLUM_IIIF_URL="http://<docker-ip>:5004"`
 1. Images should be available at `http://<docker-ip>:5004/` based on the FileSet id.  e.g., if your docker IP address is 192.168.99.100, the full view of FileSet `70795765b` would be at http://192.168.99.100:5004/70%2F79%2F%2F57%2F65%2Fb-intermediate_file.jp2/full/full/0/default.jpg
+
+## Staging Content to the Server
+
+If you have large amounts of content, it may be more convenient to 
+deliver it to the server out-of-band and then attach content files to 
+repository objects.  The Upload from Server button can do this, if a 
+file_system provider is configured in 
+config/browse_everything_providers.yml.  The provider's :home: parameter 
+specifies a directory in which such staged files may be dropped.

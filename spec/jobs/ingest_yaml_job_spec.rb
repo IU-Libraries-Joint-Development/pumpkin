@@ -44,6 +44,7 @@ RSpec.describe IngestYAMLJob do
       expect(resource1.viewing_direction).to eq('left-to-right')
       expect(resource1.state).to eq('final_review')
       expect(resource1.visibility).to eq(Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PUBLIC)
+      expect(resource1.state).to eq('complete')
     end
 
     it "ingests a right-to-left yaml file" do

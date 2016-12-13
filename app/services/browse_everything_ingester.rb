@@ -56,7 +56,7 @@ class BrowseEverythingIngester
     def downloaded_file_path
       return @downloaded_file_path if defined? @downloaded_file_path
 
-      target_dir = Plum::config[:upload_to]
+      target_dir = Plum.config[:upload_to]
       ext = File.extname(file_info['file_name'])
       base = File.basename(file_info['file_name'], ext)
       target = Dir::Tmpname.create([base, ext], target_dir) {}

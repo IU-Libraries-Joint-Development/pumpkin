@@ -54,11 +54,13 @@ class BrowseEverythingIngester
     # Fetch the content to a scratch file.  Returns the path to the
     # resulting file.  Subsequent calls return the same path.
     def downloaded_file_path
+      return @downloaded_file_path if defined? @downloaded_file_path
+
       target_dir = Plum::config[:upload_to]
       ext = File.extname(file_info['file_name'])
       base = File.basename(file_info['file_name'], ext)
       target = Dir::Tmpname.create([base, ext], target_dir) {}
-      @downloaded_file_path ||= retriever.download(file_info, target)
+      @downloaded_file_path = retriever.download(file_info, target)
     end
 
     # Remove our local scratch copy of the content.

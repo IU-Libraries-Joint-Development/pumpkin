@@ -15,6 +15,7 @@ class FileSet < ActiveFedora::Base
   apply_schema IIIFPageSchema, ActiveFedora::SchemaIndexingStrategy.new(
     ActiveFedora::Indexers::GlobalIndexer.new([:stored_searchable, :symbol])
   )
+
   before_save :normalize_identifiers
   after_save :touch_parent_works
 
@@ -47,6 +48,12 @@ class FileSet < ActiveFedora::Base
       dst = derivative_path('intermediate_file')
       FileUtils.mkdir_p(File.dirname(dst))
       FileUtils.cp(filename, dst)
+    when mime_type.include?('text/plain')
+      if filename.end_with?("fulltext.txt")
+        dst = derivative_path('ocr')
+        FileUtils.mkdir_p(File.dirname(dst))
+        FileUtils.cp(filename, dst)
+      end
     end
     super
   end

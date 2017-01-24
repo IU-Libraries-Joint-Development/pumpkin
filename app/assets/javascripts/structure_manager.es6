@@ -78,11 +78,15 @@ export default class StructureManager {
         type: "POST",
         url: url,
         data: JSON.stringify(serializer.serialize),
-        dataType: "json",
+        dataType: "text",
         contentType: "application/json"
+      }).done(function(data, textStatus, jqXHR) {
+          window.plum.flash.set("success", "Request complete: " + textStatus)
+      }).fail(function(jqXHR, textStatus, errorThrown) {
+        window.plum.flash.set("danger", "Request failed: " + errorThrown)
       }).always(() => {
-        button.text("Save")
-        button.removeClass("disabled")
+          button.text("Save")
+          button.removeClass("disabled")
       })
     })
   }

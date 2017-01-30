@@ -26,6 +26,9 @@ class WorkIndexer < CurationConcerns::WorkIndexer
       solr_doc[Solrizer.solr_name('sort_title', :stored_sortable)] = object.title.first
 
       pages = object.member_ids.size
+      if object.is_a? MultiVolumeWork
+        pages = object.member_ids.map { |id| ScannedResource.search_with_conditions({ id: id }, rows: 1).first&.dig('number_of_pages_isi').to_i }.reduce(:+)
+      end
       solr_doc[Solrizer.solr_name('number_of_pages', :stored_sortable, type: :integer)] = pages
       solr_doc[Solrizer.solr_name('number_of_pages', :stored_sortable, type: :string)] = pages_bucket(pages, 100)
 

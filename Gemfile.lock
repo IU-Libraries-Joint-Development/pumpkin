@@ -35,6 +35,15 @@ GIT
       net-ldap
 
 GIT
+  remote: https://github.com/IUBLibTech/piwik_analytics
+  revision: 061b0feb46015671578a093d94e5e6dfdd217cb0
+  specs:
+    piwik_analytics (1.1.0)
+      actionpack
+      activesupport
+      rails (>= 3.0.0)
+
+GIT
   remote: https://github.com/iiif/osullivan
   revision: 0e0cdad125218c80207e626be4531436d72147c3
   branch: development
@@ -762,6 +771,7 @@ DEPENDENCIES
   omniauth-cas
   openseadragon
   pdf-reader!
+  piwik_analytics (~> 1.1.0)!
   posix-spawn
   prawn
   pry-byebug
@@ -802,4 +812,4 @@ RUBY VERSION
    ruby 2.3.1p112
 
 BUNDLED WITH
-   1.13.6
+   1.14.6

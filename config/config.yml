@@ -69,7 +69,7 @@ defaults: &defaults
     - :lccn_call_number
     - :local_call_number
     - :copyright_holder
-    - :date_created
+    - :date_published
     - :subject
 
 development:

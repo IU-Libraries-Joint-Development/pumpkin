@@ -51,6 +51,8 @@
     "@id": dc:type
   date_created:
     "@id": dcterms:created
+  date_published:
+    "@id": dcterms:created
   extent:
     "@id": dcterms:extent
   identifier:

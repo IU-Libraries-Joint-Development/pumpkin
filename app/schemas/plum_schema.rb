@@ -23,6 +23,7 @@ class PlumSchema < ActiveTriples::Schema
   property :series, predicate: RDF::URI("http://id.loc.gov/ontologies/bibframe/seriesStatement")
   property :coverage, predicate: RDF::Vocab::DC11.coverage
   property :date, predicate: RDF::Vocab::DC11.date
+  property :date_published, predicate: ::RDF::Vocab::DC.created # duplicate of date_created
   property :format, predicate: RDF::Vocab::DC11.format
   property :source, predicate: RDF::Vocab::DC11.source
   property :extent, predicate: RDF::Vocab::DC.extent
@@ -303,7 +304,7 @@ class PlumSchema < ActiveTriples::Schema
   # Ignore things like admin data (workflow note), title, description, etc, as
   # those have custom display logic.
   def self.display_fields
-    ScannedResource.properties.values.map(&:term) - [:description, :state, :rights_statement, :rights_note, :holding_location, :title, :depositor, :source_metadata_identifier, :source_metadata, :date_modified, :date_uploaded, :workflow_note, :nav_date, :pdf_type, :ocr_language, :keyword, :create_date, :modified_date, :head, :tail, :start_canvas] - IIIFBookSchema.properties.map(&:name)
+    ScannedResource.properties.values.map(&:term) - [:description, :state, :rights_statement, :rights_note, :holding_location, :title, :depositor, :source_metadata_identifier, :source_metadata, :date_modified, :date_uploaded, :workflow_note, :nav_date, :pdf_type, :ocr_language, :keyword, :create_date, :modified_date, :head, :tail, :start_canvas, :date_created] - IIIFBookSchema.properties.map(&:name)
   end
 
   def self.edit_fields

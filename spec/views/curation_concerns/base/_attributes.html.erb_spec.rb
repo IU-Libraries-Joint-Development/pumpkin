@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "curation_concerns/base/_attributes.html.erb" do
   let(:creator) { 'Bilbo' }
-  let(:date_created) { "2015-09-08" }
+  let(:date_published) { "2015-09-08" }
   let(:rights_statement) { "http://rightsstatements.org/vocab/NKC/1.0/" }
   let(:workflow_note) { ["First", "Second"] }
 
@@ -12,7 +12,7 @@ RSpec.describe "curation_concerns/base/_attributes.html.erb" do
       creator_tesim: creator,
       author_tesim: 'Baggins',
       source_metadata_identifier_tesim: '8675309',
-      date_created_tesim: date_created,
+      date_created_tesim: date_published,
       language_tesim: 'ara',
       rights_statement_tesim: rights_statement,
       workflow_note_tesim: workflow_note
@@ -44,8 +44,8 @@ RSpec.describe "curation_concerns/base/_attributes.html.erb" do
     expect(rendered).to have_content "No Known Copyright"
   end
 
-  it "displays date created" do
-    expect(rendered).to have_content date_created
+  it "displays date published" do
+    expect(rendered).to have_content date_published
   end
 
   it "displays language name" do

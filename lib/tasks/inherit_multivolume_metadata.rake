@@ -5,9 +5,8 @@ namespace :pmp do
     logger = Logger.new(STDOUT)
 
     begin
-      parents = MultiVolumeWork.all
-      logger.info "#{parents.size} MultiVolumeWork(s) found"
-      parents.each do |parent|
+      logger.info "#{MultiVolumeWork.count} MultiVolumeWork(s) found"
+      MultiVolumeWork.find_each do |parent|
         logger.info "Processing MultiVolumeWork: #{parent.id}"
         children = parent.members
         logger.info "#{children.size} children found"

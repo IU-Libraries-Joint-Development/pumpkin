@@ -12,7 +12,7 @@ Rails.application.configure do
     OkComputer::Registry.register "default", checks
 
     checks.register "rails", OkComputer::DefaultCheck.new
-    checks.register"database", OkComputer::ActiveRecordCheck.new
+    checks.register "database", OkComputer::ActiveRecordCheck.new
 
     redis_url = Redis.current.client.options[:host]
     redis_port = Redis.current.client.options[:port]

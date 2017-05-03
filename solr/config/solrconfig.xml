@@ -296,5 +296,13 @@
     <!--   <str>yyyy&#45;MM&#45;dd</str> -->
     <!-- </lst> -->
   </requestHandler>
+  <!-- fix could not initialize class sun.nio.fs.LinuxNativeDispatcher error -->
+  <indexConfig>
+    <mergeScheduler class="org.apache.lucene.index.ConcurrentMergeScheduler">
+      <int name="maxMergeCount">42</int>
+      <int name="maxThreadCount">7</int>
+    </mergeScheduler>
+  </indexConfig>
+
 </config>
 

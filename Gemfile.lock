@@ -201,6 +201,7 @@ GEM
     builder (3.2.3)
     bunny (2.5.1)
       amq-protocol (>= 2.0.1)
+    byebug (9.0.6)
     cancancan (1.15.0)
     capistrano (3.4.0)
       i18n
@@ -497,6 +498,9 @@ GEM
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
       slop (~> 3.4)
+    pry-byebug (3.4.2)
+      byebug (~> 9.0)
+      pry (~> 0.10)
     pry-rails (0.3.4)
       pry (>= 0.9.10)
     puma (3.6.2)
@@ -772,6 +776,7 @@ DEPENDENCIES
   piwik_analytics (~> 1.1.0)!
   posix-spawn
   prawn
+  pry-byebug
   pry-rails
   pul_metadata_services!
   puma

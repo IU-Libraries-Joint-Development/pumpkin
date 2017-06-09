@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/IU-Libraries-Joint-Development/curation_concerns.git
-  revision: b526c4f6c529b5f01f30af9b2cb4ed8a291b272e
+  revision: b3dd2d9394afd6fcf00f5939be6bd1e9eaffdd9c
   specs:
     curation_concerns (1.5.0)
       active-fedora (>= 10.3.0.rc1)

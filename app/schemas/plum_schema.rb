@@ -18,10 +18,10 @@ class PlumSchema < ActiveTriples::Schema
   property :pdf_type, predicate: ::PULTerms.pdf_type
   property :start_canvas, predicate: ::RDF::Vocab::IIIF.hasStartCanvas, multiple: false
   # Newspaper metadata
-  property :newspaper_title, predicate: ::RDF::Vocab::DC11.alternative, multiple: false
-  property :digital_date, predicate: ::RDF::Vocab::DC11.available, multiple: false
-  property :usage_right, predicate: ::RDF::Vocab::DC11.accessRights, multiple: false
-  property :volume_and_issue_no, predicate: ::RDF::Vocab::DC11.hasPart, multiple: false
+  property :newspaper_title, predicate: ::RDF::Vocab::DC.alternative
+  property :digital_date, predicate: ::RDF::Vocab::DC.available, multiple: false
+  property :usage_right, predicate: ::RDF::Vocab::DC.accessRights, multiple: false
+  property :volume_and_issue_no, predicate: ::RDF::Vocab::DC.hasPart, multiple: false
 
 
   # Generated from Context

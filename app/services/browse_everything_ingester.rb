@@ -9,7 +9,8 @@ class BrowseEverythingIngester
   end
 
   def save
-    actor.create_metadata(curation_concern, {})
+    # By passing nil instead of a work, we avoid adding file_sets as members during metadata creation
+    actor.create_metadata(nil, {})
     actor.create_content(decorated_file, 'original_file', false)
     cleanup_download
   end

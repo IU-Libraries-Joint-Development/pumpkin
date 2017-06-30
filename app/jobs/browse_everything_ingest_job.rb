@@ -9,7 +9,6 @@ class BrowseEverythingIngestJob < ActiveJob::Base
       curation_concern.pending_uploads.where(file_name: file_info["file_name"]).delete_all
       actor
     end
-    curation_concern.ordered_members = actors.map(&:file_set)
-    curation_concern.save
+    MembershipBuilder.new(curation_concern, actors.map(&:file_set)).attach_files_to_work if actors.any?
   end
 end

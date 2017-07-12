@@ -10,6 +10,7 @@ class MembershipBuilder
 
   # Modified from FileSetActor#attach_file_to_work
   def attach_files_to_work
+    return unless @members.length > 0
     acquire_lock_for(work.id) do
       set_representative(work, members.first)
       set_thumbnail(work, members.first)

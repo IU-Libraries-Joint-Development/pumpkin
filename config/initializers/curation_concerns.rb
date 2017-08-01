@@ -50,6 +50,11 @@ CurationConcerns.configure do |config|
   # NOTE: if you have always sent analytics to GA for downloads and page views leave this commented out
   # config.analytic_start_date = DateTime.new(2014,9,10)
   config.working_path = ENV["PMP_UPLOAD_PATH"]
+
+  # Set TTL in milliseconds of object locks:
+  config.lock_time_to_live = 600_000 # 10m because we have long running jobs
+  # Disable retrying to attain a lock because the UI should not retry.
+  config.lock_retry_count = 1
 end
 
 Date::DATE_FORMATS[:standard] = '%m/%d/%Y'

@@ -2,25 +2,54 @@ require 'rails_helper'
 
 RSpec.describe ExtraLockable do
   let(:work) { FactoryGirl.build(:scanned_resource) }
+  let(:work_id) { work.source_metadata_identifier }
+  let(:lock_info) { nil }
+
+  around { |example|
+    # Ensure there are no existing locks before and after.
+    expect(work.lock?(work_id)).to eq false
+    example.run
+    work.unlock(lock_info) if work.lock?(work_id)
+  }
 
   context 'with no existing lock' do
+    describe '#lock' do
+      it 'creates a lock' do
+        lock_info = work.lock(work_id)
+        expect(lock_info).to be_a(Hash)
+        expect(work.lock?(work_id)).to eq true
+        work.unlock(lock_info)
+      end
+      it 'creates a lock and self unlocks when given a block' do
+        lock_info = work.lock(work_id) { nil }
+        expect(lock_info).to eq true
+        expect(work.lock?(work_id)).to eq false
+      end
+      it 'passes options to the lock backend' do
+        lock_info = work.lock(work_id, ttl: 12_345)
+        lock_info = work.lock(work_id, ttl: 23_456, extend: lock_info)
+        expect(lock_info[:validity]).to be > 12_500
+        expect(work.lock?(work_id)).to eq true
+        work.unlock(lock_info)
+      end
+    end
     describe '#lock?' do
       it 'detects no existing lock' do
-        expect(work.lock?(work.id)).to eq false
+        expect(work.lock?(work_id)).to eq false
       end
     end
   end
 
   context 'with an existing lock' do
     around { |example|
-      lock_info = work.lock_manager.client.lock(work.id, 10_000)
+      lock_info = work.lock_manager.client.lock(work_id, 10_000)
       example.run
       work.lock_manager.client.unlock(lock_info)
     }
 
     describe '#lock?' do
       it 'detects an existing lock' do
-        expect(work.lock?(work.id)).to eq true
+        expect(work.lock?(work_id)).to eq true
       end
     end
   end

@@ -2,8 +2,13 @@ module ExtraLockable
   extend ActiveSupport::Concern
   include CurationConcerns::Lockable
 
+  # TODO: Handle when id is nil or not defined.
+  def lock_id
+    "lock_#{id}"
+  end
+
   # Provides a way to pass options to the underlying Redlock client.
-  def lock(key, options = {})
+  def lock(key = lock_id, options = {})
     ttl = options.delete(:ttl) || CurationConcerns.config.lock_time_to_live
     if block_given?
       lock_manager.client.lock(key, ttl, options, &Proc.new)
@@ -12,7 +17,7 @@ module ExtraLockable
     end
   end
 
-  def lock?(key)
+  def lock?(key = lock_id)
     acquire_lock_for(key) { nil }
     return false
   rescue CurationConcerns::LockManager::UnableToAcquireLockError

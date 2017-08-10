@@ -12,6 +12,28 @@ RSpec.describe ExtraLockable do
     work.unlock(lock_info) if work.lock?(work_id)
   }
 
+  describe 'lock_id_attribute' do
+    it 'is id by default' do
+      expect(work.class.lock_id_attribute).to eq :id
+    end
+  end
+
+  describe '#lock_id' do
+    context 'when a valid id is present' do
+      before { work.class.lock_id_attribute = :source_metadata_identifier }
+      after { work.class.lock_id_attribute = :id }
+      it 'returns a string' do
+        expect(work.lock_id).to eq "lock_1234567"
+      end
+    end
+    context 'when no valid id is present' do
+      it 'raises' do
+        expect(work.id.blank?).to eq true # Because work is not persisted in this spec
+        expect { work.lock_id }.to raise_error(ArgumentError)
+      end
+    end
+  end
+
   context 'with no existing lock' do
     describe '#lock' do
       it 'creates a lock' do

@@ -3,10 +3,14 @@ module ExtraLockable
   include CurationConcerns::Lockable
 
   included do
+    class_attribute :lock_id_attribute
+    self.lock_id_attribute = :id
+
     # TODO: Handle when id is nil or not defined.
     def lock_id
-      raise ArgumentError.new("id cannot be blank") if try(:id).blank?
-      "lock_#{id}"
+      ident = try(lock_id_attribute)
+      raise ArgumentError, "lock id attribute cannot be blank" if ident.blank?
+      "lock_#{ident}"
     end
 
     # Provides a way to pass options to the underlying Redlock client.

@@ -2,18 +2,17 @@ module LockableJob
   extend ActiveSupport::Concern
 
   def self.prepended(mod)
-    # attr_accessor :lock_info
     mod.class_eval do
       before_enqueue do |job|
-        job.arguments << { lock_info: job.arguments.first.lock } # First arg should be something that includes ExtraLockable
+        job.arguments << { lock_info: job_subject(job).lock }
       end
 
       before_perform do |job|
-        job.arguments << { lock_info: job.arguments.first.lock } unless lock_info?(job.arguments)
+        job.arguments << { lock_info: job_subject(job).lock } unless lock_info?(job.arguments)
       end
 
       after_perform do |job|
-        job.arguments.first.try :unlock, job.arguments.last[:lock_info]
+        job_subject(job).try :unlock, job.arguments.last[:lock_info]
       end
     end
   end
@@ -21,6 +20,11 @@ module LockableJob
   def perform(*args)
     args.pop if lock_info?(args) # Run the job with only the original arguments
     super(*args)
+  end
+
+  # Default behavior assumes the first argument of the extended job is an actual object that includes ExtraLockable
+  def job_subject(job)
+    job.arguments.first
   end
 
   private

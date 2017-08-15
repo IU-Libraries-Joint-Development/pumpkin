@@ -1,7 +1,8 @@
 class SaveStructureJob < ActiveJob::Base
+  prepend ::LockableJob
   queue_as :default
 
-  def perform(curation_concern, structure, lock_info = curation_concern.lock)
+  def perform(curation_concern, structure)
     return unless curation_concern.respond_to?(:logical_order)
     # Remove existing logical order object to avoid accumulation of fragments.
     curation_concern.logical_order.destroy eradicate: true
@@ -12,7 +13,5 @@ class SaveStructureJob < ActiveJob::Base
   rescue
     Rails.logger.error "SaveStructureJob failed on #{curation_concern.id}! Following structure may not be persisted:\n#{structure}"
     raise
-  ensure
-    curation_concern.unlock(lock_info)
   end
 end

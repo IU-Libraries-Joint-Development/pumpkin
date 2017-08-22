@@ -331,7 +331,7 @@ describe CurationConcerns::ScannedResourcesController do
         resource = FactoryGirl.create(:scanned_resource)
         resource.lock
         get :show, id: resource.id
-        expect(response.body).to match /alert.*This object is currently queued for processing/im
+        expect(response.body).to match(/alert.*This object is currently queued for processing/im)
       end
     end
   end

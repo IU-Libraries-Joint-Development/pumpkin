@@ -326,11 +326,12 @@ describe CurationConcerns::ScannedResourcesController do
       end
     end
     context "when there is a lock" do
+      render_views
       it "sets a flash alert" do
         resource = FactoryGirl.create(:scanned_resource)
         resource.lock
         get :show, id: resource.id
-        expect(flash[:alert]).to eq "This object is currently queued for processing."
+        expect(response.body).to match /alert.*This object is currently queued for processing/im
       end
     end
   end

@@ -12,4 +12,8 @@ class BrowseEverythingIngestJob < ActiveJob::Base
     end
     MembershipBuilder.new(curation_concern, actors.map(&:file_set)).attach_files_to_work if actors.any?
   end
+
+  def job_subject(job)
+    ActiveFedora::Base.find(job.arguments.first)
+  end
 end

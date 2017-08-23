@@ -24,7 +24,11 @@ module LockableJob
 
   # Default behavior assumes the first argument of the extended job is an actual object that includes ExtraLockable
   def job_subject(job)
-    job.arguments.first
+    if defined?(super)
+      super
+    else
+      job.arguments.first
+    end
   end
 
   private

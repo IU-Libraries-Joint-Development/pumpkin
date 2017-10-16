@@ -327,7 +327,7 @@ describe CurationConcerns::ScannedResourcesController do
     end
     context "when there is a lock" do
       render_views
-      it "sets a flash alert" do
+      it "shows a lock warning" do
         resource = FactoryGirl.create(:scanned_resource)
         resource.lock
         get :show, id: resource.id

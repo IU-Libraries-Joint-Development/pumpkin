@@ -55,6 +55,34 @@ CurationConcerns.configure do |config|
   config.lock_time_to_live = 600_000 # 10m because we have long running jobs
   # Disable retrying to attain a lock because the UI should not retry.
   config.lock_retry_count = 1
+
+  ## Whitelist all directories which can be used to ingest from the local file
+  # system.
+  #
+  # Any file, and only those, that is anywhere under one of the specified
+  # directories can be used by CreateWithRemoteFilesActor to add local files
+  # to works. Files uploaded by the user are handled separately and the
+  # temporary directory for those need not be included here.
+  #
+  # Default value includes BrowseEverything.config['file_system'][:home] if it
+  # is set, otherwise default is an empty list. You should only need to change
+  # this if you have custom ingestions using CreateWithRemoteFilesActor to
+  # ingest files from the file system that are not part of the BrowseEverything
+  # mount point.
+  #
+  config.class_eval do
+    attr_writer :whitelisted_ingest_dirs
+
+    def whitelisted_ingest_dirs
+      if defined? BrowseEverything
+        Array.wrap(BrowseEverything.config['file_system'].try(:[], :home)).compact
+      else
+        []
+      end
+    end
+  end
+
+  # config.whitelisted_ingest_dirs = []
 end
 
 Date::DATE_FORMATS[:standard] = '%m/%d/%Y'

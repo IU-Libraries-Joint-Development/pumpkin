@@ -8,7 +8,7 @@ module IuMetadata
 
     attr_reader :id, :source
 
-    ATTRIBUTES = [:identifier, :title, :sort_title, :responsibility_note, :series, :creator, :subject, :publisher, :publication_place, :date_published, :published, :lccn_call_number, :local_call_number]
+    ATTRIBUTES = %i[identifier title sort_title responsibility_note series creator subject publisher publication_place date_published published lccn_call_number local_call_number].freeze
 
     def attributes
       ATTRIBUTES.map { |att| [att, send(att)] }.to_h.compact
@@ -48,7 +48,7 @@ module IuMetadata
       contributors = []
       if creator.empty? && record.any_7xx_without_t?
         fields.push(*record.fields(['100', '110', '111']))
-        fields.push(*record.fields(['700', '710', '711']).select { |df| !df['t'] })
+        fields.push(*record.fields(['700', '710', '711']).reject { |df| df['t'] })
         # By getting all of the fields first and then formatting them we keep
         # the linked field values adjacent to the romanized values. It's a small
         # thing, but may be useful.
@@ -124,7 +124,7 @@ module IuMetadata
         df.map(&:value).each do |c|
           if c.length == 3
             codes << c
-          elsif c.length % 3 == 0
+          elsif (c.length % 3).zero?
             codes.push(*c.scan(/.{3}/))
           end
         end
@@ -274,9 +274,9 @@ module IuMetadata
 
     private
 
-      BIB_LEADER06_TYPES = %w(a c d e f g i j k m o p r t)
-      TITLE_FIELDS_BY_PREF = %w(245 240 130 246 222 210 242 243 247)
-      ALPHA = %w(a b c d e f g h i j k l m n o p q r s t u v w x y z)
+      BIB_LEADER06_TYPES = %w[a c d e f g i j k m o p r t].freeze
+      TITLE_FIELDS_BY_PREF = %w[245 240 130 246 222 210 242 243 247].freeze
+      ALPHA = %w[a b c d e f g h i j k l m n o p q r s t u v w x y z].freeze
 
       def data
         @data ||= reader.select { |r| BIB_LEADER06_TYPES.include?(r.leader[6]) }[0]
@@ -291,7 +291,7 @@ module IuMetadata
       end
 
       def any_7xx_without_t?
-        data.fields(['700', '710', '711']).select { |df| !df['t'] } != []
+        data.fields(['700', '710', '711']).reject { |df| df['t'] }.any?
       end
 
       def get_linked_field(src_field)

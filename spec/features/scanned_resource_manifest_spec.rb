@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.decsribe "ScannedResourcesController", type: :feature do
+RSpec.describe "ScannedResourcesController", type: :feature do
   let(:user) { FactoryGirl.create(:image_editor) }
   let(:open_resource) { FactoryGirl.create(:open_scanned_resource, user: user) }
   let(:private_resource) { FactoryGirl.create(:private_scanned_resource, user: user) }

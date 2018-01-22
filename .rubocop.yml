@@ -213,7 +213,7 @@ Naming/FileName:
     - 'Guardfile'
 
 Naming/VariableNumber:
-  Enabled: false
+  Enabled: true
 
 Performance/HashEachMethods:
   Enabled: false

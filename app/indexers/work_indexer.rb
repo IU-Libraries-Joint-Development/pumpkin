@@ -34,7 +34,7 @@ class WorkIndexer < CurationConcerns::WorkIndexer
       solr_doc[Solrizer.solr_name('number_of_pages', :stored_sortable, type: :integer)] = pages
       solr_doc[Solrizer.solr_name('number_of_pages', :stored_sortable, type: :string)] = pages_bucket(pages, 100)
 
-      unless object.date_created.blank?
+      if object.date_created.present?
         solr_doc[Solrizer.solr_name('date_created', :stored_sortable, type: :integer)] = object.date_created.first.to_i
       end
     end

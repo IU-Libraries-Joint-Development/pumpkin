@@ -5,10 +5,11 @@ class RightsStatementRenderer < CurationConcerns::Renderers::RightsAttributeRend
     @rights_note ||= []
   end
 
+  # rubocop:disable Rails/OutputSafety
   def render
     markup = ''
 
-    return markup if !values.present? && !options[:include_empty]
+    return markup if values.blank? && !options[:include_empty]
     markup << %(<tr><th>#{label}</th>\n<td><ul class='tabular'>)
     attributes = microdata_object_attributes(field).merge(class: "attribute #{field}")
     Array(values).each do |value|
@@ -17,10 +18,11 @@ class RightsStatementRenderer < CurationConcerns::Renderers::RightsAttributeRend
     markup << %(</ul>)
     markup << simple_format(RightsStatementService.definition(values.first))
     @rights_note.each do |note|
-      markup << %(<p>#{note}</p>) unless note.blank?
+      markup << %(<p>#{note}</p>) if note.present?
     end
     markup << simple_format(I18n.t('rights.boilerplate'))
     markup << %(</td></tr>)
     markup.html_safe
   end
+  # rubocop:enable Rails/OutputSafety
 end

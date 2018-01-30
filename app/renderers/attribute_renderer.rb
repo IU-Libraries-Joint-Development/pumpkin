@@ -1,9 +1,10 @@
 class AttributeRenderer < CurationConcerns::Renderers::AttributeRenderer
   # Draw the table row for the attribute
+  # rubocop:disable Rails/OutputSafety
   def render
     markup = ''
 
-    return markup if !values.present? && !options[:include_empty]
+    return markup if values.blank? && !options[:include_empty]
     markup << %(<tr><th>#{label}</th>\n<td><ul class='tabular'>)
     attributes = microdata_object_attributes(field).merge(class: "attribute #{field}")
     Array(values).each do |value|
@@ -12,6 +13,7 @@ class AttributeRenderer < CurationConcerns::Renderers::AttributeRenderer
     markup << %(</ul></td></tr>)
     markup.html_safe
   end
+  # rubocop:enable Rails/OutputSafety
 
   def li_markup(value, attributes)
     "<li#{html_attributes(attributes)} dir=#{value.dir}>#{attribute_value_to_html(value.to_s)}</li>"

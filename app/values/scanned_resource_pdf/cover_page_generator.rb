@@ -26,12 +26,12 @@ class ScannedResourcePDF
     end
 
     def apply(prawn_document)
-      noto_cjk_b = Rails.root.join("app/assets/fonts/NotoSansCJK/NotoSansCJKtc-Bold.ttf")
-      noto_cjk_r = Rails.root.join("app/assets/fonts/NotoSansCJK/NotoSansCJKtc-Regular.ttf")
-      noto_ara_b = Rails.root.join("app/assets/fonts/NotoNaskhArabic/NotoNaskhArabic-Bold.ttf")
-      noto_ara_r = Rails.root.join("app/assets/fonts/NotoNaskhArabic/NotoNaskhArabic-Regular.ttf")
-      amiri_b = Rails.root.join("app/assets/fonts/amiri/amiri-bold.ttf")
-      amiri_r = Rails.root.join("app/assets/fonts/amiri/amiri-regular.ttf")
+      noto_cjk_b = Rails.root.join('app', 'assets', 'fonts', 'NotoSansCJK', 'NotoSansCJKtc-Bold.ttf')
+      noto_cjk_r = Rails.root.join('app', 'assets', 'fonts', 'NotoSansCJK', 'NotoSansCJKtc-Regular.ttf')
+      noto_ara_b = Rails.root.join('app', 'assets', 'fonts', 'NotoNaskhArabic', 'NotoNaskhArabic-Bold.ttf')
+      noto_ara_r = Rails.root.join('app', 'assets', 'fonts', 'NotoNaskhArabic', 'NotoNaskhArabic-Regular.ttf')
+      amiri_b = Rails.root.join('app', 'assets', 'fonts', 'amiri', 'amiri-bold.ttf')
+      amiri_r = Rails.root.join('app', 'assets', 'fonts', 'amiri', 'amiri-regular.ttf')
 
       prawn_document.font_families.update(
         "amiri" => { normal: amiri_r, italic: amiri_r, bold: amiri_b, bold_italic: amiri_b },
@@ -41,7 +41,7 @@ class ScannedResourcePDF
       prawn_document.fallback_fonts(["noto_cjk", "noto_ara", "amiri"])
 
       prawn_document.bounding_box([15, Canvas::LETTER_HEIGHT - 15], width: Canvas::LETTER_WIDTH - 30, height: Canvas::LETTER_HEIGHT - 30) do
-        prawn_document.image Rails.root.join("app/assets/images/iu-sig-formal.2x.png").to_s, position: :center, width: Canvas::LETTER_WIDTH - 30
+        prawn_document.image Rails.root.join('app', 'assets', 'images', 'iu-sig-formal.2x.png').to_s, position: :center, width: Canvas::LETTER_WIDTH - 30
         prawn_document.stroke_color "000000"
         prawn_document.move_down(20)
         header(prawn_document, scanned_resource.title, size: 24)

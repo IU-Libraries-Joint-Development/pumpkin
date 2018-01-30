@@ -35,7 +35,7 @@ class CurationConcerns::CurationConcernsController < ApplicationController
   def flag
     curation_concern.state = 'flagged'
     note = params[curation_concern_name][:workflow_note]
-    curation_concern.workflow_note = curation_concern.workflow_note + [note] unless note.blank?
+    curation_concern.workflow_note = curation_concern.workflow_note + [note] if note.present?
     if curation_concern.save
       respond_to do |format|
         format.html { redirect_to [main_app, curation_concern], notice: "Resource updated" }

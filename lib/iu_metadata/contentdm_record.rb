@@ -121,7 +121,7 @@ module IuMetadata
           attributes[pmp] = item.xpath(cdm).first&.content.to_s unless item.xpath(cdm).first&.content.to_s.empty?
         end
         cdm2pmp_multi.each do |pmp, cdm|
-          next unless item.xpath(cdm).present?
+          next if item.xpath(cdm).blank?
           vals = []
           item.xpath(cdm).each do |val|
             vals.push val.text

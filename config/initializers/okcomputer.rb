@@ -1,7 +1,7 @@
 # If PMP_OK_URL set, then OkComputer will mount a route at that location, otherwise it is effectively disabled
 OkComputer.mount_at = ENV["PMP_OK_URL"] || false
 
-OkComputer.require_authentication(ENV["PMP_OK_USER"], ENV["PMP_OK_PASS"]) unless ENV["PMP_OK_USER"].blank?
+OkComputer.require_authentication(ENV["PMP_OK_USER"], ENV["PMP_OK_PASS"]) if ENV["PMP_OK_USER"].present?
 
 # For built-in checks, see https://github.com/sportngin/okcomputer/tree/master/lib/ok_computer/built_in_checks
 

@@ -49,7 +49,7 @@ class IngestYAMLJob < ActiveJob::Base
     end
 
     def attach_sources(resource)
-      return unless @yaml[:sources].present?
+      return if @yaml[:sources].blank?
       @yaml[:sources].each do |source|
         attach_source(resource, source[:title], source[:file])
       end

@@ -18,12 +18,12 @@ class SearchBuilder
     private
 
       def queries
-        [
-          :main_query,
-          :query_children,
-          :query_file_sets,
-          :query_child_file_sets
-        ]
+        %i[
+            main_query
+            query_children
+            query_file_sets
+            query_child_file_sets
+          ]
       end
 
       def dismax_join(query)

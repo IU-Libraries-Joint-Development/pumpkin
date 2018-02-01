@@ -11,7 +11,7 @@ RSpec.describe PULTerms do
       published: 'Published',
       visibility: 'Visibility'
     }.each do |term, label|
-      describe "#{term}" do
+      describe term.to_s do
         it "has the right label" do
           expect(described_class.send(term).label).to eq label
         end

@@ -134,56 +134,11 @@ RSpec/DescribeClass:
     - 'spec/inputs/**/*'
 
 # disable (temporarily, one hopes?) new cops acquired in the version upgrade
-Bundler/OrderedGems:
-  Enabled: false
-
 Capybara/CurrentPathExpectation:
   Enabled: true
 
 Capybara/FeatureMethods:
   Enabled: true
-
-Layout/CommentIndentation:
-  Enabled: false
-
-Layout/EmptyLineAfterMagicComment:
-  Enabled: false
-
-Layout/IndentArray:
-  Enabled: false
-
-Layout/IndentAssignment:
-  Enabled: false
-
-Layout/IndentationConsistency:
-  Enabled: false
-
-Layout/IndentationWidth:
-  Enabled: false
-
-Layout/LeadingCommentSpace:
-  Enabled: false
-
-Layout/MultilineHashBraceLayout:
-  Enabled: false
-
-Layout/MultilineMethodCallBraceLayout:
-  Enabled: false
-
-Layout/MultilineMethodCallIndentation:
-  Enabled: false
-
-Layout/SpaceAroundKeyword:
-  Enabled: false
-
-Layout/SpaceBeforeComment:
-  Enabled: false
-
-Layout/SpaceInsideBlockBraces:
-  Enabled: false
-
-Layout/TrailingWhitespace:
-  Enabled: false
 
 Lint/AmbiguousBlockAssociation:
   Enabled: false
@@ -329,68 +284,6 @@ RSpec/VoidExpect:
 Security/YAMLLoad:
   Enabled: true
 
-Style/CommentedKeyword:
-  Enabled: false
-
-Style/ConditionalAssignment:
-  Enabled: false
-
-Style/EmptyCaseCondition:
-  Enabled: false
-
-Style/EmptyLiteral:
-  Enabled: false
-
-Style/EmptyMethod:
-  Enabled: false
-
-Style/Encoding:
-  Enabled: false
-
 Style/FrozenStringLiteralComment:
   Enabled: false
 
-Style/GuardClause:
-  Enabled: false
-
-Style/IfInsideElse:
-  Enabled: false
-
-Style/InverseMethods:
-  Enabled: false
-
-Style/MethodMissing:
-  Enabled: false
-
-Style/MutableConstant:
-  Enabled: false
-
-Style/NestedParenthesizedCalls:
-  Enabled: false
-
-Style/NumericPredicate:
-  Enabled: false
-
-Style/OrAssignment:
-  Enabled: false
-
-Style/PercentLiteralDelimiters:
-  Enabled: false
-
-Style/RedundantParentheses:
-  Enabled: false
-
-Style/SafeNavigation:
-  Enabled: false
-
-Style/SymbolArray:
-  Enabled: false
-
-Style/TernaryParentheses:
-  Enabled: false
-
-Style/UnneededInterpolation:
-  Enabled: false
-
-Style/ZeroLengthPredicate:
-  Enabled: false

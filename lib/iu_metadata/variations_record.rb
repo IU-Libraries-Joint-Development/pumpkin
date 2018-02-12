@@ -38,8 +38,8 @@ module IuMetadata
     end
 
     def physical_description
-      @variations.xpath("//Container/DocumentInfos/DocumentInfo' \
-      '[Type='Score']/Description").first&.content.to_s
+      @variations.xpath("//Container/DocumentInfos/DocumentInfo" \
+      "[Type='Score']/Description").first&.content.to_s
     end
 
     def copyright_holder

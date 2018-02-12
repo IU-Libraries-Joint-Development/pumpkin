@@ -37,8 +37,8 @@ RSpec.describe "MultiVolumeWorksController", type: :feature do
   it "User can create a new scanned resource" \
   " attached to the multi-volume work" do
     visit polymorphic_path [multi_volume_work]
-    expect(page).to have_text('This Multi Volume Work" \
-" has no members associated with it.')
+    expect(page).to have_text('This Multi Volume Work' \
+' has no members associated with it.')
 
     click_link 'Attach Scanned Resource'
     fill_in 'scanned_resource_title', with: 'Volume 1'

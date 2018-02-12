@@ -31,7 +31,7 @@ class Ability # rubocop:disable Metrics/ClassLength
     # only allow deleting for own objects, without ARKs
     can %i[destroy], FileSet, depositor: current_user.uid
     can %i[destroy], curation_concerns, depositor: current_user.uid
-    cannot %i[destroy], curation_concerns { |obj| !obj.identifier.nil? }
+    cannot(%i[destroy], curation_concerns) { |obj| !obj.identifier.nil? }
   end
 
   def editor_permissions

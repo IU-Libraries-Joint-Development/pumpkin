@@ -4,7 +4,7 @@ source 'https://rubygems.org'
 ruby '>= 2.3.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.7.1'
+gem 'rails', '~> 4.2.10'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -98,7 +98,7 @@ group :test do
   gem "launchy"
   gem 'rspecproxies'
   gem "vcr", '~> 2.9'
-  gem "webmock", '~> 1.0', require: false
+  gem "webmock", require: false
 end
 
 group :production do

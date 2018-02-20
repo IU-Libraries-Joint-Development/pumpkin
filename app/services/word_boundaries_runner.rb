@@ -5,7 +5,7 @@ class WordBoundariesRunner
     @file_set = FileSet.find(id)
   end
 
-  def create
+  def create # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
     Rails.logger.info "Reading #{hocr_filepath} to create WordBoundaries file"
     doc = File.open(hocr_filepath) { |f| Nokogiri::HTML(f) }
     json = {}
@@ -50,6 +50,7 @@ class WordBoundariesRunner
 
   private
 
+    # rubocop:disable Metrics/AbcSize,Metrics/MethodLength
     def parse_hocr_title(title)
       parts = title.split(';').map(&:strip)
       info = {}
@@ -69,4 +70,5 @@ class WordBoundariesRunner
       end
       info
     end
+  # rubocop:enable Metrics/AbcSize,Metrics/MethodLength
 end

@@ -14,6 +14,10 @@ describe IuMetadata::MarcRecord do
     pth = File.join(fixture_path, '345682.mrx')
     described_class.new(pth, File.open(pth).read)
   }
+  let(:bad_record) {
+    pth = File.join(fixture_path, 'marc_with_bad_leader.mrx')
+    described_class.new(pth, File.open(pth).read)
+  }
   record1_atts =
     {
       title: ['The weeping angels'],
@@ -54,12 +58,16 @@ describe IuMetadata::MarcRecord do
     it 'respects the separator option' do
       fields = ['650']
       expected = ['International relations', 'World politics--1985-1995']
-      expect(record3.formatted_fields_as_array(fields, separator: '--')).to eq expected
+      expect(
+        record3.formatted_fields_as_array(fields, separator: '--')
+      ).to eq expected
     end
     it 'respects the codes option' do
       fields = ['650']
       expected = ['International relations', 'World politics']
-      expect(record3.formatted_fields_as_array(fields, codes: ['a'])).to eq expected
+      expect(
+        record3.formatted_fields_as_array(fields, codes: ['a'])
+      ).to eq expected
     end
   end
 
@@ -94,7 +102,9 @@ describe IuMetadata::MarcRecord do
       expect(record1.creator).to eq ['Moffat, Steven']
     end
     it 'includes the 880 version if there is one' do
-      expect(record2.creator).to eq ['Pesin, Aharon Yehoshuʻa', 'פסין, אהרן יהושע']
+      expect(record2.creator).to eq [
+        'Pesin, Aharon Yehoshuʻa', 'פסין, אהרן יהושע'
+      ]
     end
   end
 
@@ -137,6 +147,15 @@ describe IuMetadata::MarcRecord do
   describe '#contents' do
     it 'gets the 505s as one squashed string' do
       expect(record1.contents).to eq 'Contents / foo.'
+    end
+  end
+
+  describe '#data' do
+    context 'when leader value fails filtering' do
+      it 'raises IuMetadata::MarcRecord::MarcParsingError' do
+        expect { bad_record.send(:data) }
+          .to raise_error IuMetadata::MarcRecord::MarcParsingError
+      end
     end
   end
 end

@@ -5,7 +5,7 @@ class MessagingClient
   end
 
   def enabled?
-    !amqp_url.blank?
+    amqp_url.present?
   end
 
   def publish(message)
@@ -25,6 +25,7 @@ class MessagingClient
     end
 
     def exchange
-      @exchange ||= channel.fanout(Plum.config['events']['exchange'], durable: true)
+      @exchange ||= channel.fanout(Plum.config['events']['exchange'],
+                                   durable: true)
     end
 end

@@ -22,7 +22,9 @@ class DownloadsController < ApplicationController
 
       return dereference_file(file_reference).reader if file_reference == 'extracted_text'
 
-      file_path = PairtreeDerivativePath.derivative_path_for_reference(asset, file_reference)
+      file_path = PairtreeDerivativePath \
+                  .derivative_path_for_reference(asset, file_reference)
+
       File.exist?(file_path) ? file_path : nil
     end
 end

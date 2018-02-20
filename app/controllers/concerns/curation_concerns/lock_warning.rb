@@ -3,13 +3,14 @@ module CurationConcerns::LockWarning
 
   included do
     def lock_warning
-      flash.now[:alert] = "This object is currently queued for processing." if lock_id? && presenter.lock?
+      flash.now[:alert] = "This object is currently queued for processing." if
+        lock_id? && presenter.lock?
     end
 
     private
 
       def lock_id?
-        presenter.respond_to?(:id) && !presenter.try(:id).blank?
+        presenter.try(:id).present?
       end
   end
 end

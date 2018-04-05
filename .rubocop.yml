@@ -177,7 +177,8 @@ RSpec/MultipleExpectations:
   Enabled: false
 
 RSpec/NestedGroups:
-  Enabled: false
+  Enabled: true
+  Max: 5
 
 RSpec/VerifiedDoubles:
   Enabled: false

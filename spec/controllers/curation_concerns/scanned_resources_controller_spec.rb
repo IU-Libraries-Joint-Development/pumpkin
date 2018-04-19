@@ -213,7 +213,7 @@ describe CurationConcerns::ScannedResourcesController do
       sign_in user
     end
 
-    context 'by default' do
+    context 'when by default' do
       it 'updates the record but does not refresh the exernal metadata' do
         post(:update,
              id: scanned_resource,
@@ -376,7 +376,7 @@ describe CurationConcerns::ScannedResourcesController do
     context "when the user is anonymous" do
       let(:user) { nil }
 
-      context "and the work's incomplete" do
+      context "with the work's incomplete" do
         it "redirects for auth" do
           resource = FactoryGirl.create(:scanned_resource, state: 'pending')
 
@@ -385,7 +385,7 @@ describe CurationConcerns::ScannedResourcesController do
           expect(response).to be_redirect
         end
       end
-      context "and the work's flagged" do
+      context "with the work's flagged" do
         it "works" do
           resource = FactoryGirl.create(:open_scanned_resource,
                                         state: 'flagged')
@@ -395,7 +395,7 @@ describe CurationConcerns::ScannedResourcesController do
           expect(response).to be_success
         end
       end
-      context "and the work's complete" do
+      context "with the work's complete" do
         it "works" do
           resource = FactoryGirl.create(:open_scanned_resource,
                                         state: 'complete')
@@ -410,7 +410,7 @@ describe CurationConcerns::ScannedResourcesController do
     context "when the user's an admin" do
       let(:user) { FactoryGirl.create(:admin) }
 
-      context "and the work's incomplete" do
+      context "with the work's incomplete" do
         it "works" do
           resource = FactoryGirl.create(:open_scanned_resource,
                                         state: 'pending')
@@ -455,7 +455,7 @@ describe CurationConcerns::ScannedResourcesController do
     context "when the user is anonymous" do
       let(:user) { nil }
 
-      context "and the work's complete" do
+      context "with the work's complete" do
         it "works" do
           resource = FactoryGirl.create(:open_scanned_resource,
                                         state: 'complete')
@@ -474,12 +474,12 @@ describe CurationConcerns::ScannedResourcesController do
       sign_in user if sign_in_user
     end
     context "when requesting color" do
-      context "and given permission" do
+      context "with given permission" do
         let(:user) { FactoryGirl.create(:admin) }
         let(:sign_in_user) { user }
 
         it "works" do
-          pdf = double("Actor")
+          pdf = instance_double("Actor")
           allow(ScannedResourcePDF).to receive(:new) \
             .with(anything, quality: "color").and_return(pdf)
           allow(pdf).to receive(:render).and_return(true)
@@ -532,7 +532,7 @@ describe CurationConcerns::ScannedResourcesController do
         let(:sign_in_user) { user } # Admin is only role with PDF ability.
 
         it 'generates the pdf then redirects to its download url' do
-          pdf = double("Actor")
+          pdf = instance_double("Actor")
           allow(ScannedResourcePDF).to receive(:new) \
             .with(anything, quality: "gray").and_return(pdf)
           allow(pdf).to receive(:render).and_return(true)
@@ -563,14 +563,14 @@ describe CurationConcerns::ScannedResourcesController do
         let(:scanned_resource) { FactoryGirl.create(:private_scanned_resource,
                                                     title: ['Dummy Title']) }
 
-        context "and not logged in" do
+        context "without logged in" do
           it "redirects for auth" do
             get :pdf, id: scanned_resource, pdf_quality: "gray"
 
             expect(response).to redirect_to "http://test.host/users/auth/cas"
           end
         end
-        context "and logged in" do
+        context "with logged in" do
           let(:sign_in_user) { FactoryGirl.create(:user) }
 
           it "redirects to root" do
@@ -659,7 +659,7 @@ describe CurationConcerns::ScannedResourcesController do
                    ScannedResourceShowPresenter)
 
   describe "#flag" do
-    context "a complete object with an existing workflow note" do
+    context "when a complete object with an existing workflow note" do
       let(:scanned_resource) { FactoryGirl.create(:scanned_resource,
                                                   user: user,
                                                   state: 'complete',
@@ -685,7 +685,7 @@ describe CurationConcerns::ScannedResourcesController do
       end
     end
 
-    context "a complete object without a workflow note" do
+    context "when a complete object without a workflow note" do
       let(:scanned_resource) { FactoryGirl.create(:scanned_resource,
                                                   user: user,
                                                   state: 'complete') }
@@ -708,7 +708,7 @@ describe CurationConcerns::ScannedResourcesController do
       end
     end
 
-    context "a pending object" do
+    context "when a pending object" do
       let(:scanned_resource) { FactoryGirl.create(:scanned_resource,
                                                   user: user,
                                                   state: 'pending') }
@@ -744,7 +744,7 @@ describe CurationConcerns::ScannedResourcesController do
       "http://plum.com/concern/scanned_resources/#{scanned_resource.id}"
     } }
 
-    context "as an admin" do
+    context "when as an admin" do
       let(:admin) { FactoryGirl.create(:admin) }
 
       before do
@@ -787,7 +787,7 @@ describe CurationConcerns::ScannedResourcesController do
       end
     end
 
-    context "as an image editor" do
+    context "when as an image editor" do
       before do
         sign_in user
       end

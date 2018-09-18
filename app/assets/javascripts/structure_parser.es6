@@ -25,7 +25,7 @@ export class StructureParser {
     if(structure_element.length > 0) {
       return structure_element.val()
     } else {
-      return "NO LABEL"
+      return ""
     }
   }
 }
@@ -69,7 +69,7 @@ export class StructureNode {
     if(input_element.length > 0) {
       return input_element.val()
     } else {
-      return "NO LABEL"
+      return ""
     }
   }
 }

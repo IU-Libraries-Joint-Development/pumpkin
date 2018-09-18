@@ -9,7 +9,9 @@ jobs:
     # legacy needed for phantomjs
     - image: circleci/ruby:2.3-node-browsers-legacy
     - image: circleci/redis:4
-    - image: yinlinchen/fcrepo4-docker:4.7.5
+    - image: ualbertalib/docker-fcrepo4:4.7
+        environment:
+          CATALINA_OPTS: "-Djava.awt.headless=true -Dfile.encoding=UTF-8 -server -Xms512m -Xmx1024m -XX:NewSize=256m -XX:MaxNewSize=256m -XX:PermSize=256m -XX:MaxPermSize=256m -XX:+DisableExplicitGC"
     - image: solr:7
       command: bin/solr -cloud -noprompt -f -p 8985
 
@@ -24,7 +26,7 @@ jobs:
     environment:
       RAILS_ENV: test
       RACK_ENV: test
-      FCREPO_TEST_PORT: 8080
+      FCREPO_TEST_PORT: 8080/fcrepo
       BUNDLE_JOBS: 4
       BUNDLE_RETRY: 3
       NOKOGIRI_USE_SYSTEM_LIBRARIES: true
@@ -64,7 +66,7 @@ jobs:
           gem update --system
           gem update bundler
           bundle config path $CIRCLE_WORKING_DIRECTORY/vendor/bundle
-          bundle update
+          bundle install
           bundle clean
 
     - run:

@@ -32,7 +32,8 @@ module Features
                FactoryGirl.create(:user).username
              end
       OmniAuth.config.add_mock(:cas, uid: user)
-      visit user_cas_omniauth_authorize_path
+      rack_test_session_wrapper = Capybara.current_session.driver
+      rack_test_session_wrapper.submit :post, user_cas_omniauth_authorize_path, nil
     end
   end
 end

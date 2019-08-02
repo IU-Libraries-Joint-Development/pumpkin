@@ -22,14 +22,14 @@ Rails.application.routes.draw do
                             omniauth_callbacks: "users/omniauth_callbacks" },
              skip: %i[passwords registration])
   devise_scope :user do
-    get('global_sign_out',
-        to: 'users/sessions#global_logout',
-        as: :destroy_global_session)
-    get 'sign_out', to: 'devise/sessions#destroy', as: :destroy_user_session
-    get('users/auth/cas',
-        to: 'users/omniauth_authorize#passthru',
-        defaults: { provider: :cas },
-        as: "new_user_session")
+    post('global_sign_out',
+         to: 'users/sessions#global_logout',
+         as: :destroy_global_session)
+    post 'sign_out', to: 'devise/sessions#destroy', as: :destroy_user_session
+    post('users/auth/cas',
+         to: 'users/omniauth_authorize#passthru',
+         defaults: { provider: :cas },
+         as: "new_user_session")
   end
   mount Hydra::RoleManagement::Engine => '/'
 

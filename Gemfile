@@ -119,6 +119,7 @@ gem 'iso-639'
 # gem 'newrelic_rpm'
 gem 'okcomputer'
 gem "omniauth-cas"
+gem "omniauth-rails_csrf_protection"
 gem 'openseadragon'
 gem 'piwik_analytics', '~> 1.1.0', git: 'https://github.com/IUBLibTech/piwik_analytics'
 gem 'posix-spawn'

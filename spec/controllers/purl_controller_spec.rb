@@ -9,6 +9,12 @@ describe PurlController do
                        state: 'complete',
                        source_metadata_identifier: 'BHR9405')
   }
+  let(:file_set) {
+    FactoryGirl.create(:file_set,
+                       user: user,
+                       title: ['Page 5'],
+                       source_metadata_identifier: 'BHR9405-001-0005')
+  }
   let(:multi_volume_work) {
     FactoryGirl.create(:multi_volume_work,
                        user: user,
@@ -44,9 +50,22 @@ describe PurlController do
             expect(JSON.parse(response.body)['url']).to match Regexp.escape(target_path)
           end
         end
+        context "when in jp2" do
+          let(:format) { 'jp2' }
+
+          it "redirects to the correct location" do
+            if model && model == 'FileSet'
+              iiif_path = IIIFPath.new(file_set.id)
+              expect(response).to redirect_to "#{iiif_path}/full/!600,600/0/default.jpg"
+            else
+              expect(response).to redirect_to target_path
+            end
+          end
+        end
       end
       context "when for a ScannedResource" do
         let(:id) { scanned_resource.source_metadata_identifier }
+        let(:model) { scanned_resource.has_model[0] }
         let(:target_path) {
           curation_concerns_scanned_resource_path(scanned_resource)
         }
@@ -55,15 +74,17 @@ describe PurlController do
       end
       context "when for a MultiVolumeWork" do
         let(:id) { multi_volume_work.source_metadata_identifier }
+        let(:model) { multi_volume_work.has_model[0] }
         let(:target_path) {
           curation_concerns_multi_volume_work_path(multi_volume_work)
         }
 
         include_examples "responses for matches"
       end
-      context "when for a specific page" do
-        let(:id) { multi_volume_work.source_metadata_identifier + '-9-0042' }
-        let(:target_path) { curation_concerns_multi_volume_work_path(multi_volume_work) + '#?m=8&cv=41' }
+      context "when for a FileSet of a specific page" do
+        let(:id) { file_set.source_metadata_identifier }
+        let(:model) { file_set.has_model[0] }
+        let(:target_path) { curation_concerns_file_set_path(file_set) + '#?m=0&cv=4' }
 
         include_examples "responses for matches"
       end

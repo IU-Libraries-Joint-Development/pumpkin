@@ -12,8 +12,8 @@ then
   echo "Compiling and installing Tesseract and its library dependencies"
 
   wget "https://github.com/uclouvain/openjpeg/archive/v2.3.1.zip"
-  unzip -q version.2.3.1.zip
-  cd openjpeg-version.2.3.1
+  unzip -q v2.3.1.zip
+  cd openjpeg-v2.3.1
   mkdir build
   cd build
   which cmake
@@ -26,7 +26,7 @@ then
 
   wget "https://github.com/DanBloomberg/leptonica/releases/download/1.79.0/leptonica-1.79.0.tar.gz"
   tar xzf leptonica-1.79.0.tar.gz
-  cd leptonica-1.79
+  cd leptonica-1.79.0
   sed -i 's/#define  HAVE_LIBJP2K     0/#define  HAVE_LIBJP2K     1/g' ./src/environ.h
   sed -i 's/-ltiff -ljpeg -lpng -lz -lm/-ltiff -ljpeg -lpng -lz -lm -lopenjp2/g' ./prog/makefile.static
   ./configure
@@ -58,11 +58,11 @@ else
   echo "Installing Tesseract library dependencies"
   cd ./tesseract
 
-  cd openjpeg-version.2.3.1/build
+  cd openjpeg-v2.3.1/build
   sudo make install
   cd $HOME/dependencies/tesseract
 
-  cd leptonica-1.79
+  cd leptonica-1.79.0
   sudo make install
   cd $HOME/dependencies/tesseract
 

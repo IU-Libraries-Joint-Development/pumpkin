@@ -551,7 +551,7 @@ GEM
       thor (>= 0.18.1, < 2.0)
     rainbow (2.2.2)
       rake
-    rake (11.3.0)
+    rake (12.3.3)
     rb-fsevent (0.9.7)
     rb-inotify (0.9.7)
       ffi (>= 0.5.0)
@@ -795,7 +795,7 @@ DEPENDENCIES
   rails-assets-babel-polyfill!
   rails-assets-bootstrap-select (= 1.9.4)!
   rails-assets-jqueryui-timepicker-addon!
-  rake (~> 11.3.0)
+  rake (~> 12.3.3)
   redis-namespace
   rsolr (~> 1.1.0)
   rspec-rails

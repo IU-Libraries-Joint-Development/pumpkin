@@ -48,8 +48,8 @@ class PurlController < ApplicationController
   private
 
     OBJECT_LOOKUPS = {
-      MultiVolumeWork => /^\w{3}\d{4}$/,
-      ScannedResource => /^\w{3,}\d{4,}$/
+      MultiVolumeWork => /^[a-zA-Z\/]{0,}\w{3}\d{4}$/,
+      ScannedResource => /^[a-zA-Z\/]{0,}\w{3,}\d{4,}$/
     }.freeze
 
     def set_object
@@ -59,7 +59,8 @@ class PurlController < ApplicationController
       OBJECT_LOOKUPS.each do |klass, match_pattern|
         if @id.match match_pattern
           @solr_hit = klass.search_with_conditions(
-            { source_metadata_identifier_tesim: @id }, rows: 1
+            /\// =~ @id ? { identifier_tesim: @id } : { source_metadata_identifier: @id },
+            rows: 1
           ).first
           @subfolder = klass.to_s.pluralize.underscore
         end

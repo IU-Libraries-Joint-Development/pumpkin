@@ -115,8 +115,8 @@ Rails.application.routes.draw do
   get '/robots.:format' => 'pages#robots'
 
   # Purl redirects
-  get '/purl/*id', to: 'purl#default', as: 'default_purl'
   get '/purl/formats/:id', to: 'purl#formats', as: 'formats_purl'
+  get '/purl/*id', to: 'purl#default', as: 'default_purl'
 
   # iiif search API
   get '/search/:id', to: 'search#search', as: :search

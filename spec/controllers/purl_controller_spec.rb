@@ -7,6 +7,7 @@ describe PurlController do
                        user: user,
                        title: ['Dummy Title'],
                        state: 'complete',
+                       identifier: 'http://purl.dlib.indiana.edu/iudl/variations/score/BHR9405',
                        source_metadata_identifier: 'BHR9405')
   }
   let(:file_set) {
@@ -99,6 +100,14 @@ describe PurlController do
       context "when for a specific page" do
         let(:id) { multi_volume_work.source_metadata_identifier + '-9-0042' }
         let(:target_path) { curation_concerns_multi_volume_work_path(multi_volume_work) + '#?m=8&cv=41' }
+
+        include_examples "responses for matches"
+      end
+      context "when a full PURL matches" do
+        let(:id) { 'iudl/variations/score/BHR9405' }
+        let(:target_path) {
+          curation_concerns_scanned_resource_path(scanned_resource)
+        }
 
         include_examples "responses for matches"
       end

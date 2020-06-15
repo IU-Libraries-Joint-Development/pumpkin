@@ -6,6 +6,7 @@ class ScannedResource < ActiveFedora::Base
   include ::CommonMetadata
   include ::StructuralMetadata
   include ::HasPendingUploads
+  include ::CollectionAssociationDestruction
   include ::CollectionIndexing
   include ExtraLockable
   self.valid_child_concerns = []

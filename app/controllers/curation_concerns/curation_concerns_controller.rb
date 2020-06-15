@@ -34,6 +34,14 @@ class CurationConcerns::CurationConcernsController < ApplicationController
     super
   end
 
+  def destroy_collection_membership
+    curation_concern.destroy_collection_membership
+    curation_concern.member_of_collections = []
+    curation_concern.save
+    flash[:notice] = "All collection membership entries for this work have been removed."
+    redirect_to :back
+  end
+
   def file_manager
     parent_presenter
     super

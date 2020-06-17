@@ -14,6 +14,9 @@ describe CurationConcerns::ScannedResourcesController do
   include_examples "alphabetize_members" do
     let(:curation_concern) { scanned_resource }
   end
+  include_examples "destroy_collection_membership" do
+    let(:curation_concern) { scanned_resource }
+  end
 
   describe "delete" do
     let(:user) { FactoryGirl.create(:admin) }

@@ -14,8 +14,8 @@ GIT
 
 GIT
   remote: https://github.com/IU-Libraries-Joint-Development/curation_concerns.git
-  revision: f2a76f96d6808fb534853ac83b6e79146306e13d
-  branch: update_kaminari_route_prefix
+  revision: 83e32f4150baa6198aebf2227e6c8c4031bcbe2a
+  branch: master
   specs:
     curation_concerns (1.5.0)
       active-fedora (>= 10.3.0.rc1)

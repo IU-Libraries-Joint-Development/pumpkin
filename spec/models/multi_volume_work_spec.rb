@@ -124,6 +124,9 @@ describe MultiVolumeWork do
   include_examples "structural metadata" do
     let(:curation_concern) { multi_volume_work }
   end
+  include_examples 'collection association destruction' do
+    let(:curation_concern) { scanned_resource }
+  end
   include_examples "common metadata" do
     let(:curation_concern) { multi_volume_work }
   end

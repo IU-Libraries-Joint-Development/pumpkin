@@ -11,6 +11,9 @@ describe CurationConcerns::MultiVolumeWorksController do
   include_examples "alphabetize_members" do
     let(:curation_concern) { multi_volume_work }
   end
+  include_examples "destroy_collection_membership" do
+    let(:curation_concern) { multi_volume_work }
+  end
 
   describe "create" do
     let(:user) { FactoryGirl.create(:admin) }

@@ -285,6 +285,9 @@ describe ScannedResource do
   include_examples "structural metadata" do
     let(:curation_concern) { scanned_resource }
   end
+  include_examples 'collection association destruction' do
+    let(:curation_concern) { scanned_resource }
+  end
   include_examples "common metadata" do
     let(:curation_concern) { scanned_resource }
   end
@@ -299,7 +302,7 @@ describe ScannedResource do
       expect(solr_doc['member_of_collections_ssim']) \
         .to eq(['Test Collection'])
       expect(solr_doc['member_of_collection_slugs_ssim']) \
-        .to eq(scanned_resource.member_of_collections.first.exhibit_id)
+        .to eq(scanned_resource.member_of_collections.map(&:exhibit_id))
     end
   end
 

@@ -131,7 +131,7 @@ gem 'sprockets', '~> 3.7.0'
 gem 'sprockets-es6'
 gem 'sprockets-rails', '~> 2.3.3'
 gem 'string_rtl'
-
+gem 'mimemagic', '~> 0.3.7'
 group :staging, :development do
   gem 'ruby-prof'
 end

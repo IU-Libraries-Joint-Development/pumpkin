@@ -117,6 +117,7 @@ gem 'browse-everything', git: 'https://github.com/projecthydra-labs/browse-every
 gem 'bunny'
 gem 'ezid-client'
 gem 'iso-639'
+gem 'mimemagic', '~> 0.3.7'
 # gem 'newrelic_rpm'
 gem 'okcomputer'
 gem "omniauth-cas"
@@ -131,7 +132,7 @@ gem 'sprockets', '~> 3.7.0'
 gem 'sprockets-es6'
 gem 'sprockets-rails', '~> 2.3.3'
 gem 'string_rtl'
-gem 'mimemagic', '~> 0.3.7'
+
 group :staging, :development do
   gem 'ruby-prof'
 end

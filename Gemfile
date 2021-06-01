@@ -117,6 +117,7 @@ gem 'browse-everything', git: 'https://github.com/projecthydra-labs/browse-every
 gem 'bunny'
 gem 'ezid-client'
 gem 'iso-639'
+gem 'mimemagic', '~> 0.3.7'
 # gem 'newrelic_rpm'
 gem 'okcomputer'
 gem "omniauth-cas"

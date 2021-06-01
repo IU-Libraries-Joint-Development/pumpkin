@@ -449,7 +449,9 @@ GEM
     mime-types (3.1)
       mime-types-data (~> 3.2015)
     mime-types-data (3.2016.0521)
-    mimemagic (0.3.2)
+    mimemagic (0.3.10)
+      nokogiri (~> 1)
+      rake
     mini_magick (4.9.5)
     mini_mime (1.0.1)
     mini_portile2 (2.4.0)
@@ -786,6 +788,7 @@ DEPENDENCIES
   kgio
   launchy
   ldap_groups_lookup (~> 0.7.0)
+  mimemagic (~> 0.3.7)
   modernizr-rails
   mysql2
   net-http-persistent (~> 2.9.4)

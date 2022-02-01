@@ -6,3 +6,22 @@ $light-gray: #f5f4f1;
 $dark-orange: #89440a;
 $orange: #e87511;
 $blue: #337ab7;
+$mahogany: #4a3c31;
+$midnight: #006298;
+
+.bg-mahogany {
+  color      : #fff;
+  background : $mahogany;
+}
+
+.bg-mahogany a:active,
+.bg-mahogany a:link,
+.bg-mahogany a:visited {
+  color : #fff;
+}
+
+.bg-mahogany .navbar a:hover,
+.bg-mahogany a:hover, {
+  color           : lighten($midnight, 50%);
+  text-decoration : none;
+}

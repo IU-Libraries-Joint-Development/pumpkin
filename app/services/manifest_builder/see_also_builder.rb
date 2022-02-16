@@ -6,7 +6,8 @@ class ManifestBuilder
     end
 
     def apply(manifest)
-      manifest.see_also = see_also_hash if bibdata?
+      # TODO: re-enable, or deprecate
+      # manifest.see_also = see_also_hash if bibdata?
       manifest
     end
 

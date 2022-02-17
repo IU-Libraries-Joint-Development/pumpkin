@@ -137,7 +137,7 @@ group :staging, :development do
   gem 'ruby-prof'
 end
 
-source 'https://rails-assets.org' do
+source ENV['CIRCLECI'] == 'true' ? 'http://insecure.rails-assets.org' : 'https://rails-assets.org' do
   gem 'rails-assets-babel-polyfill'
   gem 'rails-assets-bootstrap-select', '1.9.4'
   gem 'rails-assets-jqueryui-timepicker-addon'

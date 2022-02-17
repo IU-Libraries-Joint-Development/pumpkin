@@ -30,8 +30,8 @@ gem 'modernizr-rails'
 
 # Use Unicorn as the app server
 # gem 'unicorn'
+gem 'nio4r', '2.5.2' # Puma dep, last version to support ruby 2.3
 gem 'puma'
-gem 'nio4r', '2.5.2' # Last version to support ruby 2.3
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

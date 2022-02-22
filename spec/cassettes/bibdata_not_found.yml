@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: http://dlib.indiana.edu:9000/iucatextract?maximumRecords=1&operation=searchRetrieve&query=cql.serverChoice=359850&recordSchema=marcxml&version=1.1
+    uri: http://metadata.remote.service.url/iucatextract?maximumRecords=1&operation=searchRetrieve&query=cql.serverChoice=359850&recordSchema=marcxml&version=1.1
     body:
       encoding: US-ASCII
       string: ''
@@ -33,7 +33,7 @@ http_interactions:
   recorded_at: Thu, 15 Sep 2016 19:39:00 GMT
 - request:
     method: get
-    uri: http://dlib.indiana.edu:9000/iucatextract?maximumRecords=1&operation=searchRetrieve&query=cql.serverChoice=359850&recordSchema=mods&version=1.1
+    uri: http://metadata.remote.service.url/iucatextract?maximumRecords=1&operation=searchRetrieve&query=cql.serverChoice=359850&recordSchema=MODS&version=1.1
     body:
       encoding: US-ASCII
       string: ''

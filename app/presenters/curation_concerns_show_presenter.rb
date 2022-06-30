@@ -90,4 +90,16 @@ class CurationConcernsShowPresenter < CurationConcerns::WorkShowPresenter
         ::AttributeRenderer
       end
     end
+
+    # These are the file sets that belong to this work, but not necessarily
+    # in order.
+    def file_set_ids
+      @file_set_ids ||= begin
+                          ActiveFedora::SolrService.query("{!field f=has_model_ssim}FileSet",
+                                                          rows: 10_000,
+                                                          fl: ActiveFedora.id_field,
+                                                          fq: "{!join from=ordered_targets_ssim to=id}id:\"#{id}/list_source\"")
+                                                   .flat_map { |x| x.fetch(ActiveFedora.id_field, []) }
+                        end
+    end
 end

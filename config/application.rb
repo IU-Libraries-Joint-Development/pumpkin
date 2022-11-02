@@ -36,5 +36,14 @@ module Pumpkin
     config.action_mailer.default_url_options = { host: "plum.com" }
     config.autoload_paths << Rails.root.join('lib')
     config.autoload_paths += %W[#{config.root}/app/jobs/concerns]
+
+    # https://bibwild.wordpress.com/2016/12/27/a-class_eval-monkey-patching-pattern-with-prepend/
+    config.to_prepare do
+      # Load any monkey-patching extensions in to_prepare for
+      # Rails dev-mode class-reloading.
+      Dir.glob(File.join(File.dirname(__FILE__), "../lib/extensions/extensions.rb")) do |c|
+        Rails.configuration.cache_classes ? require(c) : load(c)
+      end
+    end
   end
 end

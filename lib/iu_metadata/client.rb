@@ -47,7 +47,7 @@ module IuMetadata
       response = conn.get do |req|
         req.url '/iucatextract'
         req.params['query'] = "cql.serverChoice=#{id}"
-        req.params['recordSchema'] = 'MODS'
+        req.params['recordSchema'] = 'mods'
         req.params['operation'] = 'searchRetrieve'
         req.params['version'] = '1.1'
         req.params['maximumRecords'] = '1'

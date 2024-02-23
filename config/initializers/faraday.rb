@@ -50,7 +50,7 @@ module PumpkinExtensions
             options = {}
             options[:ssl] = ssl_options if ssl_options
             # Long timeout for slow Fedora requests.
-            options[:request] = { timeout: 600 }
+            options[:request] = { timeout: ENV['PMP_FEDORA_REQUEST_TIMEOUT'].to_i || 600 }
             connection = Faraday.new(host, options) do |conn|
               conn.request :url_encoded # This is a default middleware
               # Safe retry for timeouts.

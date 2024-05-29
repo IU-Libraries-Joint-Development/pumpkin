@@ -59,7 +59,8 @@ CurationConcerns.configure do |config|
   config.working_path = ENV["PMP_UPLOAD_PATH"]
 
   # Set TTL in milliseconds of object locks:
-  config.lock_time_to_live = 600_000 # 10m because we have long running jobs
+  # At least 10m, but potentially equal to configured Faraday timeout because we have long running jobs
+  config.lock_time_to_live = ENV['PMP_OBJECT_LOCK_TTL'] || 600_000
   # Disable retrying to attain a lock because the UI should not retry.
   config.lock_retry_count = 1
 

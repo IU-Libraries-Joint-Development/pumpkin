@@ -41,7 +41,7 @@ gem 'devise', '>= 4.6.0'
 gem 'devise-guests', '~> 0.3'
 gem 'hydra-role-management', '~> 0.2.0'
 gem 'iiif-presentation', git: 'https://github.com/iiif/osullivan', branch: 'development'
-gem 'ldap_groups_lookup', '~> 0.7.0'
+gem 'ldap_groups_lookup', '~> 0.11.0'
 gem 'pul_metadata_services', git: 'https://github.com/IU-Libraries-Joint-Development/pul_metadata_services.git', branch: :master
 gem 'rsolr', '~> 1.1.0'
 gem 'simple_form', '~> 3.2', '< 3.5'

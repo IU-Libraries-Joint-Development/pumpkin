@@ -7,7 +7,7 @@ jobs:
   build:
     docker:
     # legacy needed for phantomjs
-    - image: circleci/ruby:2.3-node-browsers-legacy
+    - image: circleci/ruby:2.4-node-browsers-legacy
     - image: circleci/redis:4
     - image: ualbertalib/docker-fcrepo4:4.7
       environment:
@@ -66,7 +66,7 @@ jobs:
         name: Install dependencies
         command: |
           sudo npm install eslint -g
-          gem update --system
+          gem i rubygems-update -v '<3' && update_rubygems
           gem update bundler
           bundle config path $CIRCLE_WORKING_DIRECTORY/vendor/bundle
           bundle install

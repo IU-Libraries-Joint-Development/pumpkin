@@ -3,6 +3,8 @@ class SaveStructureJob < ActiveJob::Base
   queue_as :default
 
   # rubocop:disable Metrics/AbcSize
+  # rubocop:disable Metrics/CyclomaticComplexity
+  # rubocop:disable Metrics/MethodLength
   def perform(curation_concern, structure)
     return unless curation_concern.respond_to?(:logical_order)
     # Remove existing logical order object to avoid accumulation of fragments.
@@ -31,4 +33,6 @@ class SaveStructureJob < ActiveJob::Base
     raise
   end
   # rubocop:ensable Metrics/AbcSize
+  # rubocop:enable Metrics/CyclomaticComplexity
+  # rubocop:enable Metrics/MethodLength
 end

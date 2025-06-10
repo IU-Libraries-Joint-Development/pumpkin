@@ -22,11 +22,13 @@ module IuDevOps
       while docs_processed < total_docs
         docs = old_solr.conn.get('select', params: {q: query, rows: batch_size, start: docs_processed})["response"]["docs"]
         reconstructed_docs = docs.collect do |doc|
-          SolrDocReconstructor.new(doc).reconstruct
-        rescue RuntimeError => e
-          puts "Error reconstructing #{doc["id"]}...falling back to ActiveFedora method"
-          puts e.message
-          ActiveFedora::Base.find(doc["id"]).to_solr
+          begin
+            SolrDocReconstructor.new(doc).reconstruct
+          rescue RuntimeError => e
+            puts "Error reconstructing #{doc["id"]}...falling back to ActiveFedora method"
+            puts e.message
+            ActiveFedora::Base.find(doc["id"]).to_solr
+          end
         end
 
         new_solr.conn.add(reconstructed_docs, {softCommit: true})

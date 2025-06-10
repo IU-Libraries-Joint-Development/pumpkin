@@ -17,6 +17,7 @@ AllCops:
     # below added temporarily to hold back effects of version upgrade
     - 'app/views/search/*'
     - 'lib/tasks/*'
+    - 'lib/iu_dev_ops/reindex_solr_to_solr.rb'
 
 Rails:
   Enabled: true

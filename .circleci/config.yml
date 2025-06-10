@@ -65,7 +65,9 @@ jobs:
     - run:
         name: Install dependencies
         command: |
-          sudo npm install eslint -g
+          npm install node@12.22.12
+          export PATH=/home/circleci/node_modules/node/bin:$PATH
+          sudo npm install eslint@8.57.1 -g
           gem i rubygems-update -v '<3' && update_rubygems
           gem update bundler
           bundle config path $CIRCLE_WORKING_DIRECTORY/vendor/bundle

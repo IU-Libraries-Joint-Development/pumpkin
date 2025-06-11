@@ -462,7 +462,8 @@ GEM
     multipart-post (2.0.0)
     mysql2 (0.4.10)
     nenv (0.3.0)
-    net-http-persistent (2.9.4)
+    net-http-persistent (4.0.5)
+      connection_pool (~> 2.2)
     net-ldap (0.19.0)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
@@ -792,7 +793,7 @@ DEPENDENCIES
   mimemagic (~> 0.3.7)
   modernizr-rails
   mysql2
-  net-http-persistent (~> 2.9.4)
+  net-http-persistent
   okcomputer
   omniauth-cas
   openseadragon

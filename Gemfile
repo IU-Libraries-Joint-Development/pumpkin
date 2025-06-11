@@ -57,7 +57,7 @@ gem 'active_fedora-noid', '~> 2.0.0'
 gem 'hydra-derivatives' # , github: 'projecthydra/hydra-derivatives', branch: 'master'
 gem 'hydra-pcdm' # , github: 'projecthydra-labs/hydra-pcdm', branch: 'master'
 gem 'hydra-works' # , github: 'projecthydra-labs/hydra-works', branch: 'master'
-gem 'net-http-persistent', '~> 2.9.4'
+gem 'net-http-persistent'
 gem 'rake', '~> 12.3.3'
 
 group :development, :test do

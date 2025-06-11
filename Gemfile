@@ -41,7 +41,7 @@ gem 'devise', '>= 4.6.0'
 gem 'devise-guests', '~> 0.3'
 gem 'hydra-role-management', '~> 0.2.0'
 gem 'iiif-presentation', git: 'https://github.com/iiif/osullivan', branch: 'development'
-gem 'ldap_groups_lookup', '~> 0.7.0'
+gem 'ldap_groups_lookup', '~> 0.11'
 gem 'pul_metadata_services', git: 'https://github.com/IU-Libraries-Joint-Development/pul_metadata_services.git', branch: :master
 gem 'rsolr', '~> 1.1.0'
 gem 'simple_form', '~> 3.2', '< 3.5'
@@ -84,6 +84,8 @@ gem 'coveralls', require: false
 gem 'fcrepo_wrapper', '~> 0.7.0'
 gem 'solr_wrapper', '~> 0.19.0'
 
+gem 'crack', '< 0.4.6'
+
 group :development do
   gem 'capistrano', '3.4.0'
   gem 'capistrano-passenger'
@@ -101,7 +103,7 @@ group :test do
   gem "launchy"
   gem 'rspecproxies'
   gem "vcr", '~> 2.9'
-  gem "webmock", '~> 1.0', require: false
+  gem "webmock", '~> 2.3', require: false
 end
 
 group :production do

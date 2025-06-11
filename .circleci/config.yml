@@ -66,8 +66,8 @@ jobs:
         name: Install dependencies
         command: |
           npm install node@12.22.12
-          export PATH=/home/circleci/node_modules/node/bin:$PATH
-          sudo npm install eslint@8.57.1 -g
+          export PATH=/home/circleci/repo/node_modules/node/bin:$PATH
+          npm install eslint@8.57.1
           gem i rubygems-update -v '<3' && update_rubygems
           gem update bundler
           bundle config path $CIRCLE_WORKING_DIRECTORY/vendor/bundle
@@ -109,7 +109,8 @@ jobs:
     - run:
         name: Run Javascript tests
         command: |
-          eslint app/assets/javascripts/*.es6
+          export PATH=/home/circleci/repo/node_modules/node/bin:$PATH
+          npx eslint app/assets/javascripts/*.es6
           bundle exec rake spec:javascript
 
     - run:

@@ -238,8 +238,8 @@ GEM
       term-ansicolor (~> 1.3)
       thor (~> 0.19.1)
       tins (>= 1.6.0, < 2)
-    crack (0.4.3)
-      safe_yaml (~> 1.0.0)
+    crack (0.4.5)
+      rexml
     crass (1.0.6)
     daemons (1.2.4)
     dalli (2.7.6)
@@ -320,7 +320,7 @@ GEM
       rubocop (~> 0.20)
     hamster (3.0.0)
       concurrent-ruby (~> 1.0)
-    hashdiff (0.3.0)
+    hashdiff (1.2.0)
     hashery (2.1.2)
     hashie (3.4.6)
     httmultiparty (0.3.16)
@@ -414,7 +414,7 @@ GEM
     kgio (2.11.0)
     launchy (2.4.3)
       addressable (~> 2.3)
-    ldap_groups_lookup (0.7.0)
+    ldap_groups_lookup (0.11.0)
       net-ldap
     ldp (0.6.4)
       deprecation
@@ -463,7 +463,7 @@ GEM
     mysql2 (0.4.10)
     nenv (0.3.0)
     net-http-persistent (2.9.4)
-    net-ldap (0.16.2)
+    net-ldap (0.19.0)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-ssh (3.2.0)
@@ -589,6 +589,7 @@ GEM
       actionpack (>= 4.2.0, < 6.0)
       railties (>= 4.2.0, < 6.0)
     retriable (2.1.0)
+    rexml (3.2.5)
     rsolr (1.1.2)
       builder (>= 2.1.2)
     rspec (3.5.0)
@@ -636,7 +637,6 @@ GEM
     ruby-rc4 (0.1.5)
     ruby_dep (1.3.1)
     rubyzip (1.3.0)
-    safe_yaml (1.0.4)
     sass (3.4.22)
     sass-rails (5.0.6)
       railties (>= 4.0.0, < 6)
@@ -739,7 +739,7 @@ GEM
       binding_of_caller (>= 0.7.2)
       railties (>= 4.0)
       sprockets-rails (>= 2.0, < 4.0)
-    webmock (1.24.6)
+    webmock (2.3.2)
       addressable (>= 2.3.6)
       crack (>= 0.3.2)
       hashdiff
@@ -765,6 +765,7 @@ DEPENDENCIES
   capybara
   coffee-rails (~> 4.1.0)
   coveralls
+  crack (< 0.4.6)
   curation_concerns!
   dalli
   devise (>= 4.6.0)
@@ -787,7 +788,7 @@ DEPENDENCIES
   jquery-ui-rails
   kgio
   launchy
-  ldap_groups_lookup (~> 0.7.0)
+  ldap_groups_lookup (~> 0.11)
   mimemagic (~> 0.3.7)
   modernizr-rails
   mysql2
@@ -833,7 +834,7 @@ DEPENDENCIES
   uglifier (>= 1.3.0)
   vcr (~> 2.9)
   web-console (~> 2.0)
-  webmock (~> 1.0)
+  webmock (~> 2.3)
 
 RUBY VERSION
    ruby 2.3.1p112

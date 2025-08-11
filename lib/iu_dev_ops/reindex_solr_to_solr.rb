@@ -11,7 +11,7 @@ module IuDevOps
     end
 
     # Example reindexing a delta via query: "timestamp:[#{(DateTime.now - 1.day).utc.iso8601} TO *]"
-    def reindex(query: "*", batch_size: 1000)
+    def reindex(query: "*", batch_size: 1000, fs_with_text_content: false)
       puts "Old solr: #{@old_solr.conn.uri.to_s}"
       puts "New solr: #{@new_solr.conn.uri.to_s}"
 
@@ -28,7 +28,7 @@ module IuDevOps
 
         reconstructed_docs = docs.collect do |doc|
           begin
-            SolrDocReconstructor.new(doc).reconstruct
+            SolrDocReconstructor.new(doc, fs_with_text_content: fs_with_text_content).reconstruct
           rescue RuntimeError => e
             puts "Error reconstructing #{doc["id"]}...falling back to ActiveFedora method"
             puts e.message

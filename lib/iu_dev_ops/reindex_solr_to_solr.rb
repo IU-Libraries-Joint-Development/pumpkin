@@ -196,6 +196,12 @@ module IuDevOps
                        end
         new_doc["generic_type_sim"] = [generic_type]
 
+        # Some documents have source_metadata_ssm but they can't be indexed in solr9 because they are too large so move them over to a text field
+        if new_doc["source_metadata_ssm"].present?
+          new_doc["source_metadata_tesim"] = new_doc["source_metadata_ssm"]
+          new_doc["source_metadata_ssm"] = nil
+        end
+
         new_doc
       end
     end

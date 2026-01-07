@@ -22,6 +22,7 @@ class SearchBuilder < Blacklight::SearchBuilder
   def join_from_parent(solr_params)
     return if show_action?
     solr_params[:q] = JoinChildrenQuery.new(solr_params[:q]).to_s
+    solr_params[:defType] = 'lucene'
   end
 
   def hide_incomplete(solr_params)

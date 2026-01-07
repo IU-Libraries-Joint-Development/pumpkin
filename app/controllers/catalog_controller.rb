@@ -15,8 +15,7 @@ class CatalogController < ApplicationController
                  member_of_collection_slugs_ssim
                  full_text_tesim],
       'qt' => 'search',
-      'rows' => 10,
-      'defType' => 'lucene'
+      'rows' => 10
     }
   end
 
@@ -27,8 +26,7 @@ class CatalogController < ApplicationController
     config.default_solr_params = {
         qf: search_config['qf'],
         qt: search_config['qt'],
-        rows: search_config['rows'],
-        defType: search_config['defType']
+        rows: search_config['rows']
     }
 
     # solr field configuration for search results/index views

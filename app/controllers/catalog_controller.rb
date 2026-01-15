@@ -20,6 +20,9 @@ class CatalogController < ApplicationController
   end
 
   configure_blacklight do |config|
+    # Do not store searches for anyone since we can't display them anyway
+    config.crawler_detector = ->(req) { true }
+
     config.search_builder_class = SearchBuilder
     ## Default parameters to send to solr for all search-like requests.
     ## See also SolrHelper#solr_search_params

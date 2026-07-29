@@ -153,6 +153,12 @@ RSpec.describe CatalogController do
     end
   end
 
+  describe 'saved searches' do
+    it 'does not save searches' do
+      expect { get 'index', params: { q: 'test' } }.not_to change { Search.count }
+    end
+  end
+
   def document_ids
     assigns[:document_list].map do |x|
       x["id"]

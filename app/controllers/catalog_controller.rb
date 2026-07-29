@@ -307,4 +307,9 @@ class CatalogController < ApplicationController
     blacklight_config.add_facet_field 'state_sim', label: 'State'
     blacklight_config.add_index_field 'state_ssim', label: 'State'
   end
+
+  # disable querying, storing blacklight Search records which are never used
+  def find_search_session
+    return nil
+  end
 end
